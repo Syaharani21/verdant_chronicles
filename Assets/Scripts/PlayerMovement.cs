@@ -2,108 +2,147 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpPower;
+    [SerializeField] private float speed = 7f;
+    [SerializeField] private float jumpPower = 15f;
+    [SerializeField] private float dashSpeed = 40f;
+    [SerializeField] private float dashDuration = 0.2f;
+    [SerializeField] private float dashCooldown = 0.5f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
-    private float wallJumpCooldown;
-    private float horizontalInput;
 
-    // New Variables for Double Jump
+    private float horizontalInput;
+    private bool isDashing;
+    private float dashTime;
+    private float dashCooldownTime;
+    public bool IsDashing { get { return isDashing; } }
+
     private int jumpCount = 0;
-    [SerializeField] private int maxJumpCount = 2;  // Maximum 2 jumps (single + double jump)
+    [SerializeField] private int maxJumpCount = 2;
 
     private void Awake()
     {
-        // Grab references for rigidbody and animator from object
+        // Inisialisasi komponen
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+
+        // Set ukuran pemain menjadi 0.5 dari ukuran asli
+        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     }
 
     private void Update()
     {
+        HandleInput();
+        ProcessDash();
+        ManageCooldowns();
+    }
+
+    private void HandleInput()
+    {
+        // Tangkap input horizontal
         horizontalInput = Input.GetAxis("Horizontal");
 
-        // Flip player when moving left-right
+        // Flip arah pemain dengan ukuran 0.5f
         if (horizontalInput > 0.01f)
-            transform.localScale = Vector3.one;
+            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // Menghadap kanan
         else if (horizontalInput < -0.01f)
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f); // Menghadap kiri
 
-        // Set animator parameters
+        // Update animasi berjalan dan posisi grounded
         anim.SetBool("run", horizontalInput != 0);
-        anim.SetBool("grounded", isGrounded());
+        anim.SetBool("grounded", IsGrounded());
 
-        // Wall jump logic
-        if (wallJumpCooldown > 0.2f)
+        // Reset jumlah lompatan jika pemain menyentuh tanah
+        if (IsGrounded())
+            jumpCount = 0;
+
+        // Hanya bergerak dan melompat jika tidak sedang melakukan dash
+        if (!isDashing)
         {
-            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+            Move();
+            if (Input.GetKeyDown(KeyCode.Space)) Jump();
 
-            if (onWall() && !isGrounded())
-            {
-                body.gravityScale = 0;
-                body.velocity = Vector2.zero;
-            }
-            else
-                body.gravityScale = 7;
-
-            // Jumping logic, allow double jump
-            if (Input.GetKeyDown(KeyCode.Space))
-                Jump();
+            // Cek dash hanya jika tombol arah ditekan terlebih dahulu kemudian shift
+            if ((horizontalInput != 0) && Input.GetKeyDown(KeyCode.LeftShift) && dashCooldownTime <= 0)
+                StartDash();
         }
-        else
-            wallJumpCooldown += Time.deltaTime;
+    }
 
-        // Reset jump count when grounded
-        if (isGrounded())
-        {
-            jumpCount = 0;  // Reset jump count to allow jumping again
-        }
+    private void Move()
+    {
+        // Menggerakkan pemain ke arah horizontal jika tidak sedang dash
+        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
     }
 
     private void Jump()
     {
-        // Single or double jump condition
+        // Melakukan lompatan jika masih memiliki jumlah lompatan yang tersisa
         if (jumpCount < maxJumpCount)
         {
             body.velocity = new Vector2(body.velocity.x, jumpPower);
             anim.SetTrigger("jump");
-            jumpCount++;  // Increment the jump count
-        }
-        else if (onWall() && !isGrounded())
-        {
-            // Wall jump logic
-            if (horizontalInput == 0)
-            {
-                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 10, 0);
-                transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-            }
-            else
-                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 3, 6);
-
-            wallJumpCooldown = 0;
+            jumpCount++;
         }
     }
 
-    private bool isGrounded()
+    private void StartDash()
     {
+        // Memulai dash
+        isDashing = true;
+        dashTime = 0;
+        dashCooldownTime = dashCooldown; // Setel cooldown setelah dash dimulai
+        
+        anim.SetTrigger("dash"); // Memulai animasi dash
+        
+        // Mengatur kecepatan dash
+        body.velocity = new Vector2(dashSpeed * Mathf.Sign(horizontalInput), body.velocity.y);
+    }
+
+    private void ProcessDash()
+    {
+        if (isDashing)
+        {
+            dashTime += Time.deltaTime;
+
+            // Hentikan dash setelah durasi dash berakhir
+            if (dashTime >= dashDuration)
+            {
+                isDashing = false;
+                
+                // Mengatur kembali ke kecepatan berjalan normal setelah dash selesai
+                body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+            }
+        }
+    }
+
+    private void ManageCooldowns()
+    {
+        // Mengurangi waktu cooldown dash
+        if (dashCooldownTime > 0)
+            dashCooldownTime -= Time.deltaTime;
+    }
+
+    private bool IsGrounded()
+    {
+        // Mengecek apakah pemain berada di tanah dengan BoxCast
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
         return raycastHit.collider != null;
     }
 
-    private bool onWall()
+    private bool OnWall()
     {
+        // Mengecek apakah pemain sedang menempel di dinding
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
         return raycastHit.collider != null;
     }
 
-    public bool canAttack()
+    public bool CanAttack()
     {
-        return horizontalInput == 0 && isGrounded() && !onWall();
+        // Mengizinkan serangan saat pemain tidak di dinding dan tidak sedang dash
+        return !OnWall() && !isDashing;
     }
 }
