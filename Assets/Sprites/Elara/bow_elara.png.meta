@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1d1be12448ed10b4d9459f6011bc3c81
+guid: 16fecf0d457a68c4a81111db3c458a24
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,169 +97,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DASH_elara(SHEETS)_0
+      name: bow_elara_0
       rect:
         serializedVersion: 2
-        x: 124
+        x: 0
         y: 0
-        width: 164
-        height: 400
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 500
+        height: 500
+      alignment: 9
+      pivot: {x: 0.21228075, y: 0.3666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85228c62b4e607c4f8ad22e1f6c3c924
-      internalID: -604130089
+      spriteID: 0b624bde7998c3d43a4aa2a6aaaa95ea
+      internalID: 1952969106
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DASH_elara(SHEETS)_1
+      name: bow_elara_1
       rect:
         serializedVersion: 2
-        x: 522
+        x: 500
         y: 0
-        width: 176
-        height: 400
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 500
+        height: 500
+      alignment: 9
+      pivot: {x: 0.21228077, y: 0.45789474}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99b3920fbb0189449a51b4ddcecae258
-      internalID: -1613916561
+      spriteID: 13df7afd3fb486d4f8a9bc32f85d470d
+      internalID: 2099496938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DASH_elara(SHEETS)_2
+      name: bow_elara_2
       rect:
         serializedVersion: 2
-        x: 919
+        x: 1000
         y: 0
-        width: 176
-        height: 400
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 500
+        height: 500
+      alignment: 9
+      pivot: {x: 0.3315791, y: 0.5105263}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95aec77421e4b424385ab36855a5d08c
-      internalID: -1556870051
+      spriteID: 53d5bb6f710d63343bac93d7e696601d
+      internalID: 1161162327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DASH_elara(SHEETS)_3
+      name: bow_elara_3
       rect:
         serializedVersion: 2
-        x: 1217
+        x: 1498
         y: 0
-        width: 309
-        height: 400
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 500
+        height: 500
+      alignment: 9
+      pivot: {x: 0.24035132, y: 0.5280702}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7767b3e603feb584bb2ef69b5adf41db
-      internalID: 2105254097
+      spriteID: 5d58d6bc38d8f15458078b8ee4efdd80
+      internalID: -2021346899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DASH_elara(SHEETS)_4
+      name: bow_elara_4
       rect:
         serializedVersion: 2
-        x: 1579
+        x: 2000
         y: 0
-        width: 354
-        height: 400
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 500
+        height: 500
+      alignment: 9
+      pivot: {x: 0.32105273, y: 0.5280702}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ff6c5099b212de4abe53f4b45dc3630
-      internalID: 364196362
+      spriteID: ccf6fc39441453a479596b2b69861a43
+      internalID: 1179082229
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DASH_elara(SHEETS)_5
+      name: bow_elara_5
       rect:
         serializedVersion: 2
-        x: 2052
-        y: 9
-        width: 545
-        height: 391
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3507951126093674d897d4cc34a35d55
-      internalID: -959973777
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DASH_elara(SHEETS)_9
-      rect:
-        serializedVersion: 2
-        x: 2815
-        y: 7
-        width: 497
-        height: 393
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 55eeed6ff8c128c479053bd633dd1f45
-      internalID: -162018642
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DASH_elara(SHEETS)_10
-      rect:
-        serializedVersion: 2
-        x: 3735
+        x: 2500
         y: 0
-        width: 162
-        height: 400
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 500
+        height: 500
+      alignment: 9
+      pivot: {x: 0.30701807, y: 0.39824572}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee92631086ed3724bb1248c849da0a0e
-      internalID: -885816019
+      spriteID: 226cccefbc6bd9f4b9a55a94bc5f5b15
+      internalID: -343424091
       vertices: []
       indices: 
       edges: []
@@ -275,28 +233,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DASH_elara(SHEETS)_0: -604130089
-      DASH_elara(SHEETS)_1: -1613916561
-      DASH_elara(SHEETS)_10: -885816019
-      DASH_elara(SHEETS)_11: 1789910500
-      DASH_elara(SHEETS)_12: 322163316
-      DASH_elara(SHEETS)_13: -2053831310
-      DASH_elara(SHEETS)_14: -1319371584
-      DASH_elara(SHEETS)_15: -665176958
-      DASH_elara(SHEETS)_16: -1082870395
-      DASH_elara(SHEETS)_17: -844119599
-      DASH_elara(SHEETS)_18: 1961836924
-      DASH_elara(SHEETS)_19: 1190797939
-      DASH_elara(SHEETS)_2: -1556870051
-      DASH_elara(SHEETS)_20: -351489149
-      DASH_elara(SHEETS)_21: 548075289
-      DASH_elara(SHEETS)_3: 2105254097
-      DASH_elara(SHEETS)_4: 364196362
-      DASH_elara(SHEETS)_5: -959973777
-      DASH_elara(SHEETS)_6: -809225181
-      DASH_elara(SHEETS)_7: 504202082
-      DASH_elara(SHEETS)_8: -1381978411
-      DASH_elara(SHEETS)_9: -162018642
+      bow_elara_0: 1952969106
+      bow_elara_1: 2099496938
+      bow_elara_2: 1161162327
+      bow_elara_3: -2021346899
+      bow_elara_4: 1179082229
+      bow_elara_5: -343424091
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
