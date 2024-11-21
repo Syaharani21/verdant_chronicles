@@ -1,4 +1,4 @@
-using UnityEngine;  // Pastikan ini ada di bagian atas
+using UnityEngine;  
 
 public class DashAbility : MonoBehaviour 
 {
@@ -25,12 +25,10 @@ public class DashAbility : MonoBehaviour
                                                         Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || 
                                                         Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.RightArrow)))
                 {
-                    savedVelocity = playerRigidbody.velocity;  // Menggunakan playerRigidbody untuk mengakses velocity
+                    savedVelocity = playerRigidbody.velocity;  
 
-                    // Tentukan arah dash berdasarkan input horizontal dan vertikal
-                    float dashDirectionX = Input.GetAxisRaw("Horizontal");  // -1 untuk kiri, 1 untuk kanan
-                    float dashDirectionY = Input.GetAxisRaw("Vertical");    // -1 untuk bawah, 1 untuk atas
-
+                    float dashDirectionX = Input.GetAxisRaw("Horizontal");  
+                    float dashDirectionY = Input.GetAxisRaw("Vertical");    
                     // Atur kecepatan dash dengan mengalikan arah dash
                     playerRigidbody.velocity = new Vector2(dashDirectionX * 3f, dashDirectionY * 3f);
                     dashState = DashState.Dashing;

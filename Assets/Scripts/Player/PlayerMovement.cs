@@ -48,15 +48,14 @@ public class PlayerMovement : MonoBehaviour
 
         // Flip arah pemain dengan ukuran 0.5f
         if (horizontalInput > 0.01f)
-            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // Menghadap kanan
+            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); 
         else if (horizontalInput < -0.01f)
-            transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f); // Menghadap kiri
+            transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f); 
 
         // Update animasi berjalan dan posisi grounded
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", IsGrounded());
-
-        // Reset jumlah lompatan jika pemain menyentuh tanah
+        
         if (IsGrounded())
             jumpCount = 0;
 
@@ -66,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
             Move();
             if (Input.GetKeyDown(KeyCode.Space)) Jump();
 
-            // Cek dash hanya jika tombol arah ditekan terlebih dahulu kemudian shift
+            
             if ((horizontalInput != 0) && Input.GetKeyDown(KeyCode.LeftShift) && dashCooldownTime <= 0)
                 StartDash();
         }
@@ -80,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        // Melakukan lompatan jika masih memiliki jumlah lompatan yang tersisa
+        
         if (jumpCount < maxJumpCount)
         {
             body.velocity = new Vector2(body.velocity.x, jumpPower);
@@ -94,10 +93,10 @@ public class PlayerMovement : MonoBehaviour
         // Memulai dash
         isDashing = true;
         dashTime = 0;
-        dashCooldownTime = dashCooldown; // Setel cooldown setelah dash dimulai
+        dashCooldownTime = dashCooldown; 
         
-        anim.SetTrigger("dash"); // Memulai animasi dash
-        
+        anim.SetTrigger("dash"); 
+
         // Mengatur kecepatan dash
         body.velocity = new Vector2(dashSpeed * Mathf.Sign(horizontalInput), body.velocity.y);
     }
@@ -113,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 isDashing = false;
                 
-                // Mengatur kembali ke kecepatan berjalan normal setelah dash selesai
+                
                 body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
             }
         }
@@ -142,7 +141,6 @@ public class PlayerMovement : MonoBehaviour
 
     public bool CanAttack()
     {
-        // Mengizinkan serangan saat pemain tidak di dinding dan tidak sedang dash
         return !OnWall() && !isDashing;
     }
 }
