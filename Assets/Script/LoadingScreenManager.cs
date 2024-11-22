@@ -1,55 +1,57 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
 
-public class LoadingScreenManager : MonoBehaviour
+public class CloudTransition : MonoBehaviour
 {
-    public string sceneToLoad;  // Nama scene yang akan diload
-    public TextMeshProUGUI loadingText;  // Text untuk menampilkan loading progress
-    public Slider progressBar;  // Slider untuk progres bar
+   public RectTransform cloudPanel;  // Panel awan (UI element)
+    public float cloudSpeed = 1000f;  // Kecepatan gerakan awan
+    public string targetScene;        // Nama scene tujuan
 
-    public float moveSpeed = 2f;  // Kecepatan gerakan pemain
-    public Vector2 moveDirection = Vector2.right;  // Arah gerakan, bisa diubah ke kiri/kanan/atas/bawah
-    private Animator playerAnimator;  // Animator untuk player berjalan
-    private Rigidbody2D rb;  // Rigidbody2D untuk pergerakan pemain
+    private bool isTransitioningIn = false;
+    private bool isTransitioningOut = false;
 
-    private void Start()
+    void Start()
     {
-        // Mendapatkan komponen Animator dan Rigidbody2D
-        playerAnimator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-
-        // Memulai animasi berjalan dan memulai coroutine untuk load scene secara async
-        if (playerAnimator != null)
-        {
-            playerAnimator.SetBool("isWalking", true);
-        }
-        
-        StartCoroutine(LoadSceneAsync());
+        // Pastikan awan dimulai di luar layar
+        cloudPanel.anchoredPosition = new Vector2(-Screen.width, 0);
+        isTransitioningIn = true;  // Mulai transisi masuk
     }
 
-    IEnumerator LoadSceneAsync()
+    void Update()
     {
-        // Memulai load scene secara async
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad);
-        
-        // Loop untuk terus update selama loading berlangsung
-        while (!operation.isDone)
+        if (isTransitioningIn)
         {
-            // Kalkulasi loading progress
-            float progress = Mathf.Clamp01(operation.progress / 0.9f); // Unity load sampai 90%, jadi skalanya diatur
-            loadingText.text = (progress * 100f).ToString("F0") + "%";  // Update text progress
-            progressBar.value = progress;  // Update progres bar
+            // Gerakan awan masuk
+            cloudPanel.anchoredPosition += Vector2.right * cloudSpeed * Time.deltaTime;
 
-            // Menggerakkan pemain secara otomatis
-            if (rb != null)
+            if (cloudPanel.anchoredPosition.x >= 0)  // Awan menutupi layar
             {
-                rb.velocity = moveDirection * moveSpeed;
+                isTransitioningIn = false;
+                StartCoroutine(LoadNextScene());
             }
-
-            yield return null;  // Menunggu frame berikutnya
         }
+        else if (isTransitioningOut)
+        {
+            // Gerakan awan keluar
+            cloudPanel.anchoredPosition += Vector2.right * cloudSpeed * Time.deltaTime;
+
+            if (cloudPanel.anchoredPosition.x >= Screen.width)  // Awan keluar layar
+            {
+                isTransitioningOut = false;
+            }
+        }
+    }
+
+    IEnumerator LoadNextScene()
+    {
+        // Tunggu sebentar sebelum memuat scene
+        yield return new WaitForSeconds(1f);
+
+        // Muat scene berikutnya
+        SceneManager.LoadScene("Level1");
+
+        // Setelah scene baru dimuat, awan bergerak keluar
+        isTransitioningOut = true;
     }
 }
