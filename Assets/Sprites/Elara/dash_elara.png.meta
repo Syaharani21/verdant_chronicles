@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5b2817293c879794faeff6ae5ae32777
+guid: 515c9dbc523e2d642970e48416b9655e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bow_elara_sprite_0
+      name: dash_elara_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebbda39ccfe48f841b3c0b95c2c05d3c
-      internalID: -1928087701
+      spriteID: 2cccb9cc7daeeb44b8299a3f8df27be6
+      internalID: 1703332066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_elara_sprite_1
+      name: dash_elara_1
       rect:
         serializedVersion: 2
         x: 500
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6e7ad61aec51134bb6deb0785bfa01d
-      internalID: -742299030
+      spriteID: fcf159a64665c68428e215f384c057de
+      internalID: -1859678419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_elara_sprite_2
+      name: dash_elara_2
       rect:
         serializedVersion: 2
         x: 1000
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ad90c621b420b145a59df046b64f811
-      internalID: -1203241400
+      spriteID: 1d9db3c033aaed441889f6283298a125
+      internalID: -2143542712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_elara_sprite_3
+      name: dash_elara_3
       rect:
         serializedVersion: 2
         x: 1500
@@ -174,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21f908aa16fd2df498333b86584b2868
-      internalID: -612028213
+      spriteID: 487c7973b3df620498740b25ed460a8d
+      internalID: 2096193052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_elara_sprite_4
+      name: dash_elara_4
       rect:
         serializedVersion: 2
         x: 2000
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be888b838dee00d48baf0173de4647b9
-      internalID: 1414945210
+      spriteID: 5d275f830057efe4da8eec18276adae6
+      internalID: -432160254
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_elara_sprite_5
+      name: dash_elara_5
       rect:
         serializedVersion: 2
         x: 2500
@@ -216,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d0e81b8bcd33fa409d382726485ba6d
-      internalID: -1427017525
+      spriteID: 8f87d37d9a132924b98e7de4e84c6a1e
+      internalID: -1197718880
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bow_elara_sprite_6
+      name: dash_elara_6
       rect:
         serializedVersion: 2
         x: 3000
@@ -237,8 +237,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 520c20c20e7371f45b3830ac273a4732
-      internalID: 1307940138
+      spriteID: 0c457f8bd28fa0d46913d0c5c544d628
+      internalID: -897390257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash_elara_7
+      rect:
+        serializedVersion: 2
+        x: 3500
+        y: 0
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d247f729947d524b9b0b9b1c4941f66
+      internalID: -1708075658
       vertices: []
       indices: 
       edges: []
@@ -254,13 +275,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bow_elara_sprite_0: -1928087701
-      bow_elara_sprite_1: -742299030
-      bow_elara_sprite_2: -1203241400
-      bow_elara_sprite_3: -612028213
-      bow_elara_sprite_4: 1414945210
-      bow_elara_sprite_5: -1427017525
-      bow_elara_sprite_6: 1307940138
+      dash_elara_0: 1703332066
+      dash_elara_1: -1859678419
+      dash_elara_2: -2143542712
+      dash_elara_3: 2096193052
+      dash_elara_4: -432160254
+      dash_elara_5: -1197718880
+      dash_elara_6: -897390257
+      dash_elara_7: -1708075658
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
