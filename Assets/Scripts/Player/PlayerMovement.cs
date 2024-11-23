@@ -25,12 +25,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        // Inisialisasi komponen
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
 
-        // Set ukuran pemain menjadi 0.5 dari ukuran asli
+        // Set player size to 0.5
         transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     }
 
@@ -43,23 +42,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleInput()
     {
-        // Tangkap input horizontal
         horizontalInput = Input.GetAxis("Horizontal");
 
-        // Flip arah pemain dengan ukuran 0.5f
         if (horizontalInput > 0.01f)
             transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); 
         else if (horizontalInput < -0.01f)
             transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f); 
 
-        // Update animasi berjalan dan posisi grounded
+
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", IsGrounded());
         
         if (IsGrounded())
             jumpCount = 0;
 
-        // Hanya bergerak dan melompat jika tidak sedang melakukan dash
+        //Only move and jump when not dashing
         if (!isDashing)
         {
             Move();
@@ -73,7 +70,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        // Menggerakkan pemain ke arah horizontal jika tidak sedang dash
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
     }
 
@@ -90,14 +86,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartDash()
     {
-        // Memulai dash
+        // Start dash
         isDashing = true;
         dashTime = 0;
         dashCooldownTime = dashCooldown; 
         
         anim.SetTrigger("dash"); 
 
-        // Mengatur kecepatan dash
+        // Set dash speed
         body.velocity = new Vector2(dashSpeed * Mathf.Sign(horizontalInput), body.velocity.y);
     }
 
@@ -107,7 +103,6 @@ public class PlayerMovement : MonoBehaviour
         {
             dashTime += Time.deltaTime;
 
-            // Hentikan dash setelah durasi dash berakhir
             if (dashTime >= dashDuration)
             {
                 isDashing = false;
@@ -120,21 +115,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void ManageCooldowns()
     {
-        // Mengurangi waktu cooldown dash
         if (dashCooldownTime > 0)
             dashCooldownTime -= Time.deltaTime;
     }
 
     private bool IsGrounded()
     {
-        // Mengecek apakah pemain berada di tanah dengan BoxCast
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
         return raycastHit.collider != null;
     }
 
     private bool OnWall()
     {
-        // Mengecek apakah pemain sedang menempel di dinding
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
         return raycastHit.collider != null;
     }

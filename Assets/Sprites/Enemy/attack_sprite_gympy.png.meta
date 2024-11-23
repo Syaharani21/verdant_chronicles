@@ -104,7 +104,7 @@ TextureImporter:
         y: 700
         width: 700
         height: 700
-      alignment: 9
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -118,27 +118,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: attack_sprite_gympy_1
-      rect:
-        serializedVersion: 2
-        x: 700
-        y: 700
-        width: 700
-        height: 700
-      alignment: 9
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6f608768c11fe24d9cdb0a8e6c45580
-      internalID: -1226470691
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: attack_sprite_gympy_2
       rect:
         serializedVersion: 2
@@ -146,7 +125,7 @@ TextureImporter:
         y: 700
         width: 700
         height: 700
-      alignment: 9
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -167,7 +146,7 @@ TextureImporter:
         y: 0
         width: 700
         height: 700
-      alignment: 9
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -188,7 +167,7 @@ TextureImporter:
         y: 0
         width: 700
         height: 700
-      alignment: 9
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -209,7 +188,7 @@ TextureImporter:
         y: 0
         width: 700
         height: 700
-      alignment: 9
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -218,6 +197,27 @@ TextureImporter:
       bones: []
       spriteID: 188a7df5f08089044a7c83e04652f061
       internalID: -681338942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: attack_sprite_gympy_1
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 700
+        width: 700
+        height: 700
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc6701357f8f9b84b9d58173ff0c83b8
+      internalID: -1226470691
       vertices: []
       indices: 
       edges: []

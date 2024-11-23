@@ -40,9 +40,17 @@ public class Health : MonoBehaviour
             {
                 anim.SetTrigger("die");
 
-                //Deactivate all attached component classes
-                foreach (Behaviour component in components)
-                    component.enabled = false;
+                //Player
+                if(GetComponent<PlayerMovement>() != null)
+                    GetComponent<PlayerMovement>().enabled = false;
+
+                //Enemy
+                if (GetComponentInParent<EnemyPatrol>() != null)
+                GetComponentInParent<EnemyPatrol>().enabled = false;
+
+                //Kecubung
+                if (GetComponent<Kecubung>()!= null)    
+                GetComponent<Kecubung>().enabled = false;    
 
                 dead = true;
             }

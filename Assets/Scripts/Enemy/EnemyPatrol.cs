@@ -2,59 +2,64 @@ using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
-    [Header("Patrol Points")]
-    [SerializeField] private Transform leftEdge; 
-    [SerializeField] private Transform rightEdge; 
+    [Header ("Patrol Points")]
+    [SerializeField] private Transform leftEdge;
+    [SerializeField] private Transform rightEdge;
 
     [Header("Enemy")]
     [SerializeField] private Transform enemy;
 
-    [Header("Movement Parameters")]
+    [Header("Movement parameters")]
     [SerializeField] private float speed;
-    private Vector3 initScale; 
-    private bool movingLeft; 
+    private Vector3 initScale;
+    private bool movingLeft;
+
+    [Header("Enemy Animator")]
+    [SerializeField] private Animator anim;
 
     private void Awake()
     {
-        // Simpan skala awal enemy
         initScale = enemy.localScale;
     }
 
     private void Update()
+{
+    if (movingLeft)
     {
-        
-        if (movingLeft)
-        {
-            // Jika belum mencapai ujung kiri, terus bergerak
-            if (enemy.position.x > leftEdge.position.x)
-                MoveInDirection(-1);
-            else
-                movingLeft = false; 
-        }
+        if (enemy.position.x > leftEdge.position.x)
+            MoveInDirection(-1);
         else
         {
-            // Jika belum mencapai ujung kanan, terus bergerak
-            if (enemy.position.x < rightEdge.position.x)
-                MoveInDirection(1);
-            else
-                movingLeft = true; 
+            enemy.position = new Vector3(leftEdge.position.x, enemy.position.y, enemy.position.z);
+            DirectionChange();
         }
     }
-
-    private void MoveInDirection(int direction)
+    else
     {
-        // Ubah orientasi enemy berdasarkan arah
-        enemy.localScale = new Vector3(
-            Mathf.Abs(initScale.x) * (direction == -1 ? 1 : -1), // Kiri: skala positif, Kanan: skala negati
-            initScale.y,
-            initScale.z
-        );
+        if (enemy.position.x < rightEdge.position.x)
+            MoveInDirection(1);
+        else
+        {
+            enemy.position = new Vector3(rightEdge.position.x, enemy.position.y, enemy.position.z);
+            DirectionChange();
+        }
+    }
+}
 
-        // Pindahkan enemy ke arah yang ditentukan
-        enemy.position = new Vector3(
-            enemy.position.x + Time.deltaTime * direction * speed,
-            enemy.position.y, 
-            enemy.position.z  
-        );
+
+    private void DirectionChange()
+    {
+        movingLeft = !movingLeft;
+    }
+
+    private void MoveInDirection(int _direction)
+    {
+        //Make enemy face direction
+        enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * _direction,
+            initScale.y, initScale.z);
+
+        //Move in that direction
+        enemy.position = new Vector3(enemy.position.x + Time.deltaTime * _direction * speed,
+            enemy.position.y, enemy.position.z);
     }
 }

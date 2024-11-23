@@ -9,9 +9,9 @@ public class CameraController : MonoBehaviour
 
     // Follow player
     [SerializeField] private Transform player;
-    [SerializeField] private float aheadDistance;
+    [SerializeField] private float aheadDistance = 8f;
     [SerializeField] private float cameraSpeed;
-    [SerializeField] private float dashCameraSpeed = 0.5f;
+    [SerializeField] private float dashCameraSpeed = 1f;
     private float targetCameraSpeed;
     private float lookAhead;
 
@@ -27,7 +27,6 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        // Smooth transition for room camera movement
         transform.position = Vector3.SmoothDamp(
             transform.position,
             new Vector3(currentPosX, transform.position.y, transform.position.z),
@@ -41,14 +40,20 @@ public class CameraController : MonoBehaviour
         // Update camera position
         if (player != null)
         {
+            lookAhead = Mathf.Lerp(lookAhead, (aheadDistance * player.localScale.x), Time.deltaTime * targetCameraSpeed);
+
+            float targetCameraPosX = player.position.x + lookAhead;
+
+            if (playerMovement.IsDashing)
+            {
+                targetCameraPosX = Mathf.Lerp(transform.position.x, player.position.x + lookAhead, targetCameraSpeed);
+            }
+
             transform.position = Vector3.Lerp(
                 transform.position,
-                new Vector3(player.position.x + lookAhead, transform.position.y, transform.position.z),
+                new Vector3(targetCameraPosX, transform.position.y, transform.position.z),
                 Time.deltaTime * targetCameraSpeed
             );
-
-            // Adjust lookAhead based on player's scale and dash status
-            lookAhead = Mathf.Lerp(lookAhead, (aheadDistance * player.localScale.x), Time.deltaTime * targetCameraSpeed);
         }
     }
 

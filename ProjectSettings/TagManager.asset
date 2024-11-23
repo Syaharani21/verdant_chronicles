@@ -49,11 +49,11 @@ TagManager:
   - name: Foreground
     uniqueID: 3774734305
     locked: 0
-  - name: Player
-    uniqueID: 3778602027
-    locked: 0
   - name: Ground
     uniqueID: 2774539937
+    locked: 0
+  - name: Player
+    uniqueID: 3778602027
     locked: 0
   - name: Attack
     uniqueID: 2872808493
