@@ -6,9 +6,9 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
 
-    public float damageMultiplier = 1.0f;
-    public float speedMultiplier = 1.0f;
-    public float healthMultiplier = 1.0f;
+    public float damageMultiplier = 1f;
+    public float speedMultiplier = 1f;
+    public float healthMultiplier = 1f;
 
     private void Awake()
     {
@@ -18,14 +18,8 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
+            Debug.LogWarning("Multiple instances of PlayerStats found. Destroying duplicate.");
             Destroy(gameObject);
         }
-    }
-
-    public void ResetMultipliers()
-    {
-        damageMultiplier = 1.0f;
-        speedMultiplier = 1.0f;
-        healthMultiplier = 1.0f;
     }
 }

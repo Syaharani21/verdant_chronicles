@@ -3,7 +3,7 @@ using UnityEngine;
 public class ButtonPot : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryPanel; 
-   private GameObject currentPlant;
+    private GameObject currentPlant;
     private bool isBuffActive = false;
 
     public enum BuffType { Damage, Speed, Health }
@@ -27,7 +27,21 @@ public bool IsEmpty()
         if (IsEmpty())
         {
             GameObject newPlant = Instantiate(plantPrefab, transform);
-            newPlant.transform.localPosition = new Vector3(5f, -190f, 0); // Sesuaikan posisi
+            newPlant.transform.localPosition = new Vector3(-655f, -190f, 0); // Sesuaikan posisi
+            newPlant.transform.localScale = Vector3.one;
+            newPlant.transform.localRotation = Quaternion.identity;
+
+            currentPlant = newPlant;
+
+            Debug.Log($"Planted {plantPrefab.name} in the pot.");
+
+            
+        }
+
+        if (IsEmpty())
+        {
+            GameObject newPlant = Instantiate(plantPrefab, transform);
+            newPlant.transform.localPosition = new Vector3(756f, -190f, 0); // Sesuaikan posisi
             newPlant.transform.localScale = Vector3.one;
             newPlant.transform.localRotation = Quaternion.identity;
 
@@ -60,9 +74,8 @@ public bool IsEmpty()
     {
         RemovePlant(); // Panggil metode RemovePlant untuk menghapus tanaman
     }
-   
 
-    private void ActivateBuff()
+    public void ActivateBuff()
     {
         if (!isBuffActive)
         {
