@@ -15,6 +15,9 @@ public class Kecubung : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     private float cooldownTimer = Mathf.Infinity;
 
+    [Header("Attack Sound")]
+    [SerializeField] private AudioClip attackSound;
+
     //References
     private Animator anim;
     private Health playerHealth;
@@ -37,6 +40,7 @@ public class Kecubung : MonoBehaviour
             {
                 cooldownTimer = 0;
                 anim.SetTrigger("attack");
+                SoundManager.instance.PlaySound(attackSound);
             }
         }
 

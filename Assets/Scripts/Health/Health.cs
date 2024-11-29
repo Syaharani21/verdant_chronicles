@@ -18,6 +18,10 @@ public class Health : MonoBehaviour
     [SerializeField] private Behaviour[] components;
     private bool invulnerable;
 
+    [Header("Death Sound")]
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip hurtSound;
+
     private void Awake()
     {
         currentHealth = startingHealth;
@@ -33,6 +37,7 @@ public class Health : MonoBehaviour
         {
             anim.SetTrigger("hurt");
             StartCoroutine(Invunerability());
+            SoundManager.instance.PlaySound(hurtSound);
         }
         else
         {
@@ -40,19 +45,12 @@ public class Health : MonoBehaviour
             {
                 anim.SetTrigger("die");
 
-                //Player
-                if(GetComponent<PlayerMovement>() != null)
-                    GetComponent<PlayerMovement>().enabled = false;
-
-                //Enemy
-                if (GetComponentInParent<EnemyPatrol>() != null)
-                GetComponentInParent<EnemyPatrol>().enabled = false;
-
-                //Kecubung
-                if (GetComponent<Kecubung>()!= null)    
-                GetComponent<Kecubung>().enabled = false;    
+                //Deactivate all attached component classes
+                foreach (Behaviour component in components)
+                    component.enabled = false;
 
                 dead = true;
+                SoundManager.instance.PlaySound(deathSound);
             }
         }
     }
@@ -73,5 +71,9 @@ public class Health : MonoBehaviour
         }
         Physics2D.IgnoreLayerCollision(10, 11, false);
         invulnerable = false;
+    }
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
     }
 }
