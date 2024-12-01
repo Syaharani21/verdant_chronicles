@@ -1,27 +1,36 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
-public class Inventory : MonoBehaviour
+public class InventoryManager : MonoBehaviour
 {
-    public List<Item> items = new List<Item>();
+    public static InventoryManager instance;
 
-    public void AddItem(Item item)
+    private void Awake()
     {
-        items.Add(item);
-        Debug.Log("Item added: " + item.itemName);
-    }
-
-    public void RemoveItem(Item item)
-    {
-        items.Remove(item);
-        Debug.Log("Item removed: " + item.itemName);
-    }
-
-    public void ShowInventory()
-    {
-        foreach (var item in items)
+        if (instance == null)
         {
-            Debug.Log("Inventory Item: " + item.itemName);
+            instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    // List untuk menyimpan objek tanaman di inventory
+    private List<GameObject> inventory = new List<GameObject>();
+
+    // Fungsi untuk menambahkan tanaman ke inventory
+    public void AddToInventory(GameObject plant)
+    {
+        // Tambahkan tanaman ke daftar inventory
+        inventory.Add(plant);
+        Debug.Log($"{plant.name} added to inventory.");
+    }
+
+    // Fungsi untuk mendapatkan isi inventory
+    public List<GameObject> GetInventory()
+    {
+        return inventory;
     }
 }

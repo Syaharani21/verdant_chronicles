@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryUi : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField] private GameObject inventoryPanel; // Panel inventory
