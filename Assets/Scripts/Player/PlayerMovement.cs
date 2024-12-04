@@ -90,14 +90,21 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Jump()
+{
+    if (jumpCount < maxJumpCount)
     {
-        if (jumpCount < maxJumpCount)
+        anim.SetTrigger("jump");
+        body.velocity = new Vector2(body.velocity.x, jumpPower);
+        jumpCount++;
+
+        // Mainkan suara setiap kali pemain melompat
+        if (jumpSound != null)
         {
-            anim.SetTrigger("jump");
-            body.velocity = new Vector2(body.velocity.x, jumpPower);
-            jumpCount++;
+            SoundManager.instance.PlaySound(jumpSound);
         }
     }
+}
+
 
     private void StartDash()
     {
