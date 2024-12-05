@@ -12,7 +12,7 @@ public class DialogObject : ScriptableObject
     public string[] Dialogue => dialogue;
 
     // Property to check if there are responses
-    public bool HasResponses => responses != null && responses.Length > 0;
+    public bool HasResponses => Responses != null && Responses.Length > 0;
 
     // Property to access responses
     public Response[] Responses => responses;

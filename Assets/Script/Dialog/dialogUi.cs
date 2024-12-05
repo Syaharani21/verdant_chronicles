@@ -2,15 +2,16 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-public class dialogUi : MonoBehaviour
+public class dialogUi : MonoBehaviour // Capitalized class name
 {
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
 
-    public bool IsOpen{get; private set;}
+    public bool IsOpen { get; private set; }
 
     private TypewriterEffect typewriterEffect;
     private ResponseHandler responseHandler;
+
 
     private void Start()
     {
@@ -22,8 +23,13 @@ public class dialogUi : MonoBehaviour
     public void ShowDialogue(DialogObject dialogueObject)
     {
         IsOpen = true;
-      dialogueBox.SetActive(true);
+        dialogueBox.SetActive(true);
         StartCoroutine(StepThroughDialogue(dialogueObject));
+    }
+
+    public void AddResponseEvents(ResponeEvent[] responseEvents)
+    {
+        responseHandler.AddResponseEvents(responseEvents);
     }
 
     private IEnumerator StepThroughDialogue(DialogObject dialogueObject)
@@ -32,17 +38,16 @@ public class dialogUi : MonoBehaviour
         
         for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
         {
-            string dialogue = dialogueObject.Dialogue[i]; 
-            yield return RunTypingEffect(dialogue);
+            string dialogue = dialogueObject.Dialogue[i];
+            
+            yield return StartCoroutine(typewriterEffect.Run(dialogue, textLabel));
 
-            textLabel.text = dialogue;
+            if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses) break;
 
-            if(i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses)break;
-
-            yield return null;
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space)); // Wait for space key to proceed
             yield return new WaitForSeconds(1);
         }
+
         if (dialogueObject.HasResponses)
         {
             responseHandler.ShowResponses(dialogueObject.Responses);
@@ -51,28 +56,23 @@ public class dialogUi : MonoBehaviour
         {
             CloseDialogueBox();
         }
-        
     }
 
-    private IEnumerator RunTypingEffect(string dialogue)
+    public IEnumerator Run(string text, TMP_Text textLabel)
     {
-        typewriterEffect.Run(dialogue, textLabel);
+        textLabel.text = string.Empty; // Clear text label before starting typing
 
-        while (typewriterEffect.IsRunning)
+        foreach (char letter in text)
         {
-            yield return null;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                typewriterEffect.Stop();
-            }
+            textLabel.text += letter; // Append one letter at a time
+            yield return new WaitForSeconds(0.05f); // Typing speed (adjustable)
         }
     }
 
     private void CloseDialogueBox()
     {
         IsOpen = false;
-      dialogueBox.SetActive(false);
-      textLabel.text=string.Empty;
+        dialogueBox.SetActive(false);
+        textLabel.text = string.Empty;
     }
 }

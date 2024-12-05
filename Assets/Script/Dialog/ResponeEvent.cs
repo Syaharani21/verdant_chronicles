@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ResponeEvent
 {
-    [HideaInInspector] public string name;
+    [HideInInspector] public string name;
     [SerializeField] private UnityEvent onPickedResponse;
 
     public UnityEvent OnPickedResponse => onPickedResponse;

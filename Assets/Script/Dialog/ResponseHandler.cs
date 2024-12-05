@@ -9,16 +9,22 @@ public class ResponseHandler : MonoBehaviour
     [SerializeField] private RectTransform responseButtonTemplate;
     [SerializeField] private RectTransform responseContainer;
 
-    private dialogUi dialogueUi;
+    private dialogUi dialogueUi; // Corrected class name
 
     private DialogObject dialogObject;
+    private ResponeEvent[] responseEvents;
     
     private List<GameObject> tempResponseButtons = new List<GameObject>();
 
     private void Start()
     {
-        dialogueUi = GetComponent<dialogUi>();
-        responseButtonTemplate.gameObject.SetActive(false); // Pastikan template default tidak aktif
+        dialogueUi = GetComponent<dialogUi>(); // Corrected class name
+        responseButtonTemplate.gameObject.SetActive(false); // Ensure the template is not active
+    }
+
+    public void AddResponseEvents(ResponeEvent[] responseEvents)
+    {
+        this.responseEvents = responseEvents;
     }
 
     public void ShowResponses(Response[] responses)
@@ -30,7 +36,7 @@ public class ResponseHandler : MonoBehaviour
             return;
         }
 
-        // Hapus tombol sebelumnya
+        // Clear previous buttons
         foreach (Transform child in responseContainer)
         {
             Destroy(child.gameObject);
@@ -39,12 +45,15 @@ public class ResponseHandler : MonoBehaviour
 
         float responseBoxHeight = 0;
 
-        foreach (Response response in responses)
+        for (int i = 0; i < responses.Length; i++) // Use a for loop to get the index
         {
+            Response response = responses[i]; // Corrected variable shadowing
+            int responseIndex = i;
+            
             GameObject responseButton = Instantiate(responseButtonTemplate.gameObject, responseContainer);
-            responseButton.SetActive(true); // Aktifkan tombol
+            responseButton.SetActive(true); // Activate the button
 
-            // Ubah teks tombol
+            // Change button text
             TMP_Text buttonText = responseButton.GetComponentInChildren<TMP_Text>();
             if (buttonText != null)
             {
@@ -55,11 +64,11 @@ public class ResponseHandler : MonoBehaviour
                 Debug.LogWarning("TMP_Text component not found on response button!");
             }
 
-            // Tambahkan event listener untuk respon
+            // Add event listener for response
             Button button = responseButton.GetComponent<Button>();
             if (button != null)
             {
-                button.onClick.AddListener(() => OnPickedResponse(response));
+                button.onClick.AddListener(() => OnPickedResponse(response, responseIndex));
             }
             else
             {
@@ -67,36 +76,33 @@ public class ResponseHandler : MonoBehaviour
             }
 
             tempResponseButtons.Add(responseButton);
-            responseBoxHeight += responseButton.GetComponent<RectTransform>().sizeDelta.y;
+            responseBoxHeight += responseButton.GetComponent<RectTransform>().sizeDelta.y; // Add button height
         }
 
-        // Perbarui ukuran response box
+        // Update response box size
         responseBox.sizeDelta = new Vector2(responseBox.sizeDelta.x, responseBoxHeight);
-        responseBox.gameObject.SetActive(true); // Tampilkan kotak respon
+        responseBox.gameObject.SetActive(true); // Show response box
     }
 
-    private void OnPickedResponse(Response response)
+    private void OnPickedResponse(Response response, int responseIndex)
     {
         Debug.Log("Picked response: " + response.ResponseText);
 
-        // Sembunyikan kotak respon
+        // Hide response box
         responseBox.gameObject.SetActive(false);
 
-        // Hapus tombol yang sudah dibuat
+        // Destroy created buttons
         foreach (GameObject button in tempResponseButtons)
         {
             Destroy(button);
         }
         tempResponseButtons.Clear();
 
-        // Jika ada dialog lanjutan, tampilkan
-        if (response.DialogObject != null)
+        if (responseEvents != null && responseIndex < responseEvents.Length)
         {
-            dialogueUi.ShowDialogue(response.DialogObject);
+            responseEvents[responseIndex].OnPickedResponse?.Invoke();
         }
-        else
-        {
-            Debug.LogWarning("No follow-up dialogue for this response.");
-        }
+
+        dialogueUi.ShowDialogue(response.DialogObject);
     }
 }

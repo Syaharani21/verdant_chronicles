@@ -1879,6 +1879,7 @@ GameObject:
   - component: {fileID: 1613048423}
   - component: {fileID: 1613048422}
   - component: {fileID: 1613048424}
+  - component: {fileID: 1613048425}
   m_Layer: 7
   m_Name: npc
   m_TagString: Untagged
@@ -2059,6 +2060,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogObject: {fileID: 11400000, guid: bba507a6a52a4d343a6ff228e4705244, type: 2}
+--- !u!114 &1613048425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613048417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936a5b2b39ab4674bb309b0c864cafc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogObject: {fileID: 11400000, guid: bba507a6a52a4d343a6ff228e4705244, type: 2}
+  events:
+  - name: Yes
+    onPickedResponse:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: No
+    onPickedResponse:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1635274049
 GameObject:
   m_ObjectHideFlags: 0
