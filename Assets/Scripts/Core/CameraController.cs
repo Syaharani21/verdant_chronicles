@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float dashCameraSpeed = 1f;
     public float FollowSpeed = 2f;
     public float yOffset = 1f;
+    public float xOffset = 4f; // Offset horizontal untuk lebih ke kiri
     private float targetCameraSpeed;
     private float lookAhead;
 
@@ -34,11 +35,11 @@ public class CameraController : MonoBehaviour
         {
             lookAhead = Mathf.Lerp(lookAhead, 1f * player.localScale.x, Time.deltaTime * targetCameraSpeed);
 
-            float targetCameraPosX = player.position.x + lookAhead;
+            float targetCameraPosX = player.position.x + lookAhead + xOffset; // Tambahkan offset horizontal
 
             if (playerMovement.IsDashing)
             {
-                targetCameraPosX = Mathf.Lerp(transform.position.x, player.position.x + lookAhead, targetCameraSpeed);
+                targetCameraPosX = Mathf.Lerp(transform.position.x, player.position.x + lookAhead + xOffset, targetCameraSpeed);
             }
 
             Vector3 newPos = new Vector3(targetCameraPosX, player.position.y + yOffset, -10f);
@@ -54,7 +55,7 @@ public class CameraController : MonoBehaviour
             else
             {
                 idleTimer += Time.deltaTime;  // Increase idle timer if idle
-                if (idleTimer >= 1f && !isIdle)
+                if (idleTimer >= 0.1f && !isIdle)
                 {
                     isIdle = true;
                     // Set camera to center on player after 1 second of idling
