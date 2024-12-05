@@ -24,6 +24,12 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Update()
 {
+    // Periksa apakah musuh sudah mati
+    if (enemy.GetComponent<Health>().IsDead)
+    {
+        return; 
+    }
+
     if (movingLeft)
     {
         if (enemy.position.x > leftEdge.position.x)
@@ -45,7 +51,6 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 }
-
 
     private void DirectionChange()
     {

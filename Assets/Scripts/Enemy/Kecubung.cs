@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Kecubung : MonoBehaviour
 {
-    [Header ("Attack Parameters")]
+    [Header("Attack Parameters")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private float range;
     [SerializeField] private int damage;
@@ -18,7 +18,6 @@ public class Kecubung : MonoBehaviour
     [Header("Attack Sound")]
     [SerializeField] private AudioClip attackSound;
 
-    //References
     private Animator anim;
     private Health playerHealth;
     private EnemyPatrol enemyPatrol;
@@ -33,9 +32,22 @@ public class Kecubung : MonoBehaviour
     {
         cooldownTimer += Time.deltaTime;
 
-        //Attack only when player in sight
+        // Periksa apakah musuh mati
+        if (GetComponent<Health>().IsDead)
+            return;
+
+        // Periksa apakah player ada di dalam jangkauan
         if (PlayerInSight())
         {
+            // Periksa apakah player sudah mati
+            if (playerHealth != null && playerHealth.IsDead)
+            {
+                if (enemyPatrol != null)
+                    enemyPatrol.enabled = true; // Kembali berpatroli
+                return; // Hentikan serangan
+            }
+
+            // Serang jika cooldown selesai
             if (cooldownTimer >= attackCooldown)
             {
                 cooldownTimer = 0;
@@ -50,7 +62,7 @@ public class Kecubung : MonoBehaviour
 
     private bool PlayerInSight()
     {
-        RaycastHit2D hit = 
+        RaycastHit2D hit =
             Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
             0, Vector2.left, 0, playerLayer);
@@ -60,6 +72,7 @@ public class Kecubung : MonoBehaviour
 
         return hit.collider != null;
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -69,7 +82,7 @@ public class Kecubung : MonoBehaviour
 
     private void DamagePlayer()
     {
-        if (PlayerInSight())
+        if (PlayerInSight() && playerHealth != null && !playerHealth.IsDead)
             playerHealth.TakeDamage(damage);
     }
 }

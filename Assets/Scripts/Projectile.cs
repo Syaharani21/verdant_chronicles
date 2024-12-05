@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
     private float direction;
     private bool hit;
     private float lifetime;
+    private int damage; // Damage yang akan diterima dari PlayerAttack
 
     private Animator anim;
     private BoxCollider2D boxCollider;
@@ -15,9 +16,11 @@ public class Projectile : MonoBehaviour
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
+
     private void Update()
     {
         if (hit) return;
+
         float movementSpeed = speed * Time.deltaTime * direction;
         transform.Translate(movementSpeed, 0, 0);
 
@@ -31,9 +34,12 @@ public class Projectile : MonoBehaviour
         boxCollider.enabled = false;
         anim.SetTrigger("explode");
 
-        if (collision.tag == "Enemy")
-        collision.GetComponent<Health>().TakeDamage(1);
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<Health>()?.TakeDamage(damage); // Gunakan damage dari PlayerAttack
+        }
     }
+
     public void SetDirection(float _direction)
     {
         lifetime = 0;
@@ -48,6 +54,12 @@ public class Projectile : MonoBehaviour
 
         transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
     }
+
+    public void SetDamage(int _damage)
+    {
+        damage = _damage; // Set damage dari PlayerAttack
+    }
+
     private void Deactivate()
     {
         gameObject.SetActive(false);

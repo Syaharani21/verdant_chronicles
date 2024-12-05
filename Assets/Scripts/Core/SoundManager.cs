@@ -9,17 +9,6 @@ public class SoundManager : MonoBehaviour
     {
         instance = this;
         source = GetComponent<AudioSource>();
-
-        // Jika memakai lagu yang sama di stage selanjutnya(Hapus jika menggunakan sound yang berbeda)
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); 
-        }
-        // Destroy duplicate game objects
-        else if (instance != null && instance != this)
-            Destroy(gameObject);
-
     }
 
     // Ubah dari private ke public

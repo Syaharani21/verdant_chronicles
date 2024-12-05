@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Wall
   - Player
   - Enemy
-  - 
+  - Boss
   - 
   - 
   - 
@@ -60,4 +61,7 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 3793301489
+    locked: 0
+  - name: Boss
+    uniqueID: 539796795
     locked: 0

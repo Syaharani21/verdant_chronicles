@@ -1,11 +1,13 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [Header ("Health")]
+    [Header("Health")]
     [SerializeField] private float startingHealth;
+    public float StartingHealth => startingHealth;
     public float currentHealth { get; private set; }
+
     private Animator anim;
     private bool dead;
 
@@ -14,12 +16,13 @@ public class Health : MonoBehaviour
     [SerializeField] private int numberOfFlashes;
     private SpriteRenderer spriteRend;
 
-    [Header("Components")]
+    [Header("Components to Disable on Death")]
     [SerializeField] private Behaviour[] components;
     private bool invulnerable;
 
-    [Header("Death Sound")]
-    [SerializeField] private AudioClip deathSound;
+    [Header("Sound Effects")]
+    [SerializeField] private AudioClip deathSound1;
+    [SerializeField] private AudioClip deathSound2;
     [SerializeField] private AudioClip hurtSound;
 
     private void Awake()
@@ -28,37 +31,56 @@ public class Health : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRend = GetComponent<SpriteRenderer>();
     }
+
+    public bool IsDead
+    {
+        get { return dead; }
+    }
+
     public void TakeDamage(float _damage)
     {
-        if (invulnerable) return;
+        if (invulnerable || dead) return;
+
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
         if (currentHealth > 0)
         {
             anim.SetTrigger("hurt");
-            StartCoroutine(Invunerability());
+            StartCoroutine(Invulnerability());
             SoundManager.instance.PlaySound(hurtSound);
         }
         else
         {
             if (!dead)
             {
-                anim.SetTrigger("die");
-
-                //Deactivate all attached component classes
-                foreach (Behaviour component in components)
-                    component.enabled = false;
-
-                dead = true;
-                SoundManager.instance.PlaySound(deathSound);
+                Die();
             }
         }
     }
+
+    private void Die()
+    {
+        dead = true;
+        anim.SetTrigger("die");
+        SoundManager.instance.PlaySound(deathSound1);
+        SoundManager.instance.PlaySound(deathSound2);
+
+        foreach (Behaviour component in components)
+        {
+            if (component != null) 
+                component.enabled = false;
+        }
+    }
+
     public void AddHealth(float _value)
     {
-        currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
+        if (!dead) 
+        {
+            currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
+        }
     }
-    private IEnumerator Invunerability()
+
+    private IEnumerator Invulnerability()
     {
         invulnerable = true;
         Physics2D.IgnoreLayerCollision(10, 11, true);
@@ -69,9 +91,11 @@ public class Health : MonoBehaviour
             spriteRend.color = Color.white;
             yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
         }
+
         Physics2D.IgnoreLayerCollision(10, 11, false);
         invulnerable = false;
     }
+
     private void Deactivate()
     {
         gameObject.SetActive(false);

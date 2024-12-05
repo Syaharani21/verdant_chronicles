@@ -3,21 +3,22 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private float attackCooldown;     
-    [SerializeField] private Transform firePoint;       
-    [SerializeField] private GameObject[] fireballs;    
-    [SerializeField] private float meleeAttackRange;    
-    [SerializeField] private int meleeDamage;          
-    [SerializeField] private LayerMask enemyLayer;   
-    [SerializeField] private AudioClip rangedSound;  
-    [SerializeField] private AudioClip meleeattackSound;  
-    [SerializeField] private AudioClip weaponSwitchSound; 
+    [SerializeField] private float attackCooldown;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject[] fireballs;
+    [SerializeField] private float meleeAttackRange;
+    [SerializeField] private int meleeDamage;
+    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private AudioClip rangedSound;
+    [SerializeField] private AudioClip meleeattackSound;
+    [SerializeField] private AudioClip weaponSwitchSound;
+    [SerializeField] private int fireballDamage; // Tambahkan field untuk damage ranged attack
 
-    private Animator anim;                              
-    private PlayerMovement playerMovement;              
-    private float cooldownTimer = Mathf.Infinity;       
-    private bool isMeleeAttack = false;                 
-    private bool isAttacking = false; // Mencegah serangan berulang selama animasi
+    private Animator anim;
+    private PlayerMovement playerMovement;
+    private float cooldownTimer = Mathf.Infinity;
+    private bool isMeleeAttack = false;
+    private bool isAttacking = false;
 
     private void Awake()
     {
@@ -27,7 +28,6 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        // Switch antara melee dan ranged attack dengan SFX
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             isMeleeAttack = false;
@@ -39,7 +39,6 @@ public class PlayerAttack : MonoBehaviour
             PlayWeaponSwitchSound();
         }
 
-        // Jika serangan diaktifkan, dan cooldown selesai
         if (Input.GetMouseButton(0) && cooldownTimer > attackCooldown && playerMovement.CanAttack() && !isAttacking)
         {
             if (isMeleeAttack)
@@ -48,46 +47,45 @@ public class PlayerAttack : MonoBehaviour
                 StartCoroutine(RangedAttack());
         }
 
-        cooldownTimer += Time.deltaTime; 
+        cooldownTimer += Time.deltaTime;
     }
 
     private IEnumerator RangedAttack()
     {
-        isAttacking = true; // Memulai siklus serangan
+        isAttacking = true;
         SoundManager.instance.PlaySound(rangedSound);
         anim.SetTrigger("attack");
         cooldownTimer = 0;
 
         yield return new WaitForSeconds(0.1f);
 
-        fireballs[FindFireball()].transform.position = firePoint.position;
-        fireballs[FindFireball()].GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
+        var fireball = fireballs[FindFireball()];
+        fireball.transform.position = firePoint.position;
+        fireball.GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
+        fireball.GetComponent<Projectile>().SetDamage(fireballDamage); // Set damage dari PlayerAttack
 
-        yield return new WaitForSeconds(attackCooldown); // Tunggu hingga cooldown selesai
-        isAttacking = false; // Akhiri siklus serangan
+        yield return new WaitForSeconds(attackCooldown);
+        isAttacking = false;
     }
 
     private IEnumerator MeleeAttack()
     {
-        isAttacking = true; // Memulai siklus serangan
+        if (isAttacking) yield break;
+        isAttacking = true;
         SoundManager.instance.PlaySound(meleeattackSound);
         anim.SetTrigger("MeleeAttack");
         cooldownTimer = 0;
 
-        // Tunggu hingga animasi mencapai titik hit
-        yield return new WaitForSeconds(0.2f); 
+        yield return new WaitForSeconds(0.30f);
 
-        // Hit detection
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(firePoint.position, meleeAttackRange, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Enemy terkena serangan: " + enemy.name);
             enemy.GetComponent<Health>()?.TakeDamage(meleeDamage);
         }
 
-        // Tunggu hingga animasi selesai sepenuhnya
         yield return new WaitForSeconds(attackCooldown);
-        isAttacking = false; // Akhiri siklus serangan
+        isAttacking = false;
     }
 
     private int FindFireball()
