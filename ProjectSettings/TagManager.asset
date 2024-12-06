@@ -5,20 +5,22 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Enemy
+  - Boss
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - isGrounded
+  - 
   - Water
   - UI
-  - background
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Wall
+  - Player
+  - Enemy
+  - Boss
   - 
   - 
   - 
@@ -42,9 +44,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: player
-    uniqueID: 1947625865
+  - name: Background
+    uniqueID: 393648825
     locked: 0
-  - name: isGrounded
-    uniqueID: 3608514555
+  - name: Foreground
+    uniqueID: 3774734305
+    locked: 0
+  - name: Ground
+    uniqueID: 2774539937
+    locked: 0
+  - name: Player
+    uniqueID: 3778602027
+    locked: 0
+  - name: Attack
+    uniqueID: 2872808493
+    locked: 0
+  - name: Enemy
+    uniqueID: 3793301489
+    locked: 0
+  - name: Boss
+    uniqueID: 539796795
     locked: 0
