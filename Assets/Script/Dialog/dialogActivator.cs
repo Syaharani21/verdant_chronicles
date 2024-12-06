@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DialogActivator : MonoBehaviour, InteractionObject // Capitalized class name
+public class DialogActivator : MonoBehaviour, InteractionObject
 {
     [SerializeField] private DialogObject dialogObject;
 
@@ -9,17 +9,17 @@ public class DialogActivator : MonoBehaviour, InteractionObject // Capitalized c
         this.dialogObject = dialogObject;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && other.TryGetComponent(out player player)) // Capitalized class name
+        if (other.gameObject.CompareTag("Player") && other.TryGetComponent(out player player))
         {
             player.Interaction = this;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other) 
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && other.TryGetComponent(out player player)) // Capitalized class name
+        if (other.gameObject.CompareTag("Player") && other.TryGetComponent(out player player))
         {
             if (player.Interaction is DialogActivator dialogueActivator && dialogueActivator == this)
             {
@@ -28,12 +28,15 @@ public class DialogActivator : MonoBehaviour, InteractionObject // Capitalized c
         }
     }
 
-    public void Interact(player player) // Capitalized class name
+    public void Interact(player player)
     {
-        if(TryGetComponent(out DialogResponseEvent responseEvents) && responseEvents.DialogObject == dialogObject)
+        // Tambahkan event respons jika ada
+        if (TryGetComponent(out DialogResponseEvent responseEvents))
         {
-            player.dialogueUi.AddResponseEvents(responseEvents.Events);
+            player.DialogueUi.AddResponseEvents(responseEvents.Events);
         }
+        
+        // Tampilkan dialog
         player.DialogueUi.ShowDialogue(dialogObject);
     }
 }

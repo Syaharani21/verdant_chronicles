@@ -39,8 +39,9 @@ public class dialogUi : MonoBehaviour // Capitalized class name
         for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
         {
             string dialogue = dialogueObject.Dialogue[i];
-            
-            yield return StartCoroutine(typewriterEffect.Run(dialogue, textLabel));
+            typewriterEffect.Run(dialogue, textLabel);
+
+           yield return new WaitUntil(() => !typewriterEffect.IsRunning);
 
             if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses) break;
 
@@ -57,17 +58,7 @@ public class dialogUi : MonoBehaviour // Capitalized class name
             CloseDialogueBox();
         }
     }
-
-    public IEnumerator Run(string text, TMP_Text textLabel)
-    {
-        textLabel.text = string.Empty; // Clear text label before starting typing
-
-        foreach (char letter in text)
-        {
-            textLabel.text += letter; // Append one letter at a time
-            yield return new WaitForSeconds(0.05f); // Typing speed (adjustable)
-        }
-    }
+    
 
     private void CloseDialogueBox()
     {

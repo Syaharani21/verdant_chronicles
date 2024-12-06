@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic; 
-using TMPro; 
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TypewriterEffect : MonoBehaviour
 {
-    [SerializeField] private float typewriterSpeed = 50f; 
+    [SerializeField] private float typewriterSpeed = 50f;
 
     public bool IsRunning { get; private set; }
 
@@ -17,11 +17,10 @@ public class TypewriterEffect : MonoBehaviour
 
     private Coroutine typingCoroutine;
 
-
     public void Run(string textToType, TMP_Text textLabel)
     {
-         textLabel.text = string.Empty;
-        if (IsRunning) 
+        textLabel.text = string.Empty;
+        if (IsRunning)
         {
             Stop();
         }
@@ -33,7 +32,7 @@ public class TypewriterEffect : MonoBehaviour
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
-            typingCoroutine = null; 
+            typingCoroutine = null;
         }
         IsRunning = false;
     }
@@ -50,21 +49,21 @@ public class TypewriterEffect : MonoBehaviour
         {
             int lastCharIndex = charIndex;
             t += Time.deltaTime * typewriterSpeed;
-            charIndex = Mathf.FloorToInt(t); 
-            charIndex = Mathf.Clamp(charIndex, 0, textToType.Length); 
+            charIndex = Mathf.FloorToInt(t);
+            charIndex = Mathf.Clamp(charIndex, 0, textToType.Length);
 
             for (int i = lastCharIndex; i < charIndex; i++)
-            { 
-                bool isLast = i >= textToType.Length - 1; 
-                textLabel.text = textToType.Substring(0, i + 1); 
-                
+            {
+                bool isLast = i >= textToType.Length - 1;
+                textLabel.text = textToType.Substring(0, i + 1);
+
                 if (IsPunctuation(textToType[i], out float waitTime) && !isLast && i + 1 < textToType.Length && IsPunctuation(textToType[i + 1], out _))
                 {
                     yield return new WaitForSeconds(waitTime);
                 }
             }
 
-            yield return null; 
+            yield return null;
         }
 
         textLabel.text = textToType; // Ensure the full text is displayed at the end
@@ -85,14 +84,14 @@ public class TypewriterEffect : MonoBehaviour
         return false;
     }
 
-    private readonly struct Punctuation 
+    private readonly struct Punctuation
     {
-        public readonly HashSet<char> punctuations; 
+        public readonly HashSet<char> punctuations;
         public readonly float WaitTime;
 
         public Punctuation(HashSet<char> punctuations, float waitTime)
         {
-            this.punctuations = punctuations; 
+            this.punctuations = punctuations;
             WaitTime = waitTime;
         }
     }
