@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526f3ae94ec9a304a97c62ff0d669d2e, type: 3}
   m_Name: Flower 3
   m_EditorClassIdentifier: 
-  flowerName: 
-  flowerSprite: {fileID: 0}
-  damageMultiplier: 0
-  speedBoost: 0
-  healthMultiplier: 0
+  flowerName: Bunga
+  flowerSprite: {fileID: 21300000, guid: d0d2cdf40f621c846ab3456e75562ec7, type: 3}
+  damageMultiplier: 15
+  speedBoost: 16
+  healthMultiplier: 20

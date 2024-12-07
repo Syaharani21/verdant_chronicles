@@ -3,29 +3,55 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    public Flower[] flowers;
-    public GameObject inventoryPanel;
-    public GameObject potPrefab; // Prefab pot dengan mekanisme tanam
+    public Flower[] flowers; // Array bunga yang tersedia
+    public GameObject inventoryPanel; // Panel Inventory
+    public GameObject pot; // Referensi ke pot saat ini
 
-    public void OpenInventory(GameObject pot)
+    void Start()
     {
-        inventoryPanel.SetActive(true);
+        PopulateInventory();
+    }
 
-        // Bind buttons in inventory with flower planting
+    void PopulateInventory()
+    {
+        // Ambil semua Button di dalam Inventory Panel
         foreach (Transform child in inventoryPanel.transform)
         {
             Button flowerButton = child.GetComponent<Button>();
             int index = child.GetSiblingIndex();
+
             if (index < flowers.Length)
             {
-                flowerButton.onClick.AddListener(() => PlantFlower(pot, flowers[index]));
+                // Set gambar tombol bunga
+                Image buttonImage = flowerButton.GetComponent<Image>();
+                buttonImage.sprite = flowers[index].flowerSprite;
+
+                // Hapus semua listener untuk mencegah duplikasi
+                flowerButton.onClick.RemoveAllListeners();
+
+                // Tambahkan event untuk tombol
+                flowerButton.onClick.AddListener(() => PlantFlower(flowers[index]));
             }
         }
     }
 
-    public void PlantFlower(GameObject pot, Flower flower)
+    public void OpenInventory(GameObject selectedPot)
     {
-        pot.GetComponent<Pot>().PlantFlower(flower);
+        pot = selectedPot;
+        inventoryPanel.SetActive(true);
+    }
+
+    public void CloseInventory()
+    {
         inventoryPanel.SetActive(false);
+    }
+
+    void PlantFlower(Flower flower)
+    {
+        if (pot != null)
+        {
+            pot.GetComponent<Pot>().PlantFlower(flower);
+            CloseInventory();
+        }
     }
 }
