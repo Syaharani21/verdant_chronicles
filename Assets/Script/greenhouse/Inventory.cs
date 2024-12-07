@@ -22,8 +22,11 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         // Tambahkan bunga ke inventory untuk testing
-        AddFlower("Anggrek");
-        AddFlower("Tulip");
+        AddFlower("Bunga");
+        AddFlower("Bunga");
+        AddFlower("Bunga");
+        AddFlower("Bunga");
+        AddFlower("Bunga");
     }
 
     public void AddFlower(string flowerName)

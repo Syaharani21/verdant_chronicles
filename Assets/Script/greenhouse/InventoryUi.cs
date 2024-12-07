@@ -14,9 +14,8 @@ public class InventoryUi : MonoBehaviour
     private void Start()
     {
         inventoryPanel.SetActive(false); // Sembunyikan panel di awal
-        InventoryManager.Instance.AddFlower("Rose");
-        InventoryManager.Instance.AddFlower("Sunflower");
-        InventoryManager.Instance.AddFlower("Tulip");
+
+        
     }
 
     public void OpenInventory(ButtonPot pot)
@@ -32,30 +31,43 @@ public class InventoryUi : MonoBehaviour
     }
 
     private void PopulateInventory()
+{
+    Debug.Log("Populating Inventory...");
+
+    // Hapus semua item lama
+    foreach (Transform child in inventoryContent)
     {
-        // Hapus item lama
-        foreach (Transform child in inventoryContent)
-        {
-            Destroy(child.gameObject);
-        }
-
-        // Tambahkan item bunga ke inventory UI
-        foreach (string flower in InventoryManager.Instance.flowers)
-        {
-            GameObject item = Instantiate(inventoryItemPrefab, inventoryContent);
-            TMP_Text itemText = item.GetComponentInChildren<TMP_Text>();
-            if (itemText != null)
-            {
-                itemText.text = flower;
-            }
-
-            Button button = item.GetComponent<Button>();
-            if (button != null)
-            {
-                button.onClick.AddListener(() => SelectFlower(flower));
-            }
-        }
+        Destroy(child.gameObject);
     }
+
+    // Tambahkan bunga ke inventory UI
+    foreach (string flower in InventoryManager.Instance.flowers)
+{
+    Debug.Log($"Instantiating item for: {flower}");
+    GameObject item = Instantiate(inventoryItemPrefab, inventoryContent);
+
+    Debug.Log($"Created item: {item.name}, Parent: {item.transform.parent.name}");
+    // Tambahkan log untuk elemen teks
+    TMP_Text itemText = item.GetComponentInChildren<TMP_Text>();
+    
+    if (inventoryItemPrefab == null)
+{
+    Debug.LogError("inventoryItemPrefab is null!");
+    Debug.Break(); // Berhenti saat runtime untuk memeriksa status
+}
+    if (itemText != null)
+    {
+        itemText.text = flower;
+        Debug.Log($"Set text for item: {flower}");
+    }
+    else
+    {
+        Debug.LogError("TMP_Text not found in prefab!");
+    }
+}
+
+}
+
 
     private void SelectFlower(string flower)
     {
