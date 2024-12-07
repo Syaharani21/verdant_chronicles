@@ -3,13 +3,15 @@ using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager instance;
+    public static InventoryManager Instance; // Singleton untuk akses global
+    public List<string> flowers = new List<string>(); // List untuk menyimpan bunga
 
     private void Awake()
     {
-        if (instance == null)
+        // Singleton Pattern
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -17,20 +19,30 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // List untuk menyimpan objek tanaman di inventory
-    private List<GameObject> inventory = new List<GameObject>();
-
-    // Fungsi untuk menambahkan tanaman ke inventory
-    public void AddToInventory(GameObject plant)
+    private void Start()
     {
-        // Tambahkan tanaman ke daftar inventory
-        inventory.Add(plant);
-        Debug.Log($"{plant.name} added to inventory.");
+        // Tambahkan bunga ke inventory untuk testing
+        AddFlower("Anggrek");
+        AddFlower("Tulip");
     }
 
-    // Fungsi untuk mendapatkan isi inventory
-    public List<GameObject> GetInventory()
+    public void AddFlower(string flowerName)
     {
-        return inventory;
+        flowers.Add(flowerName);
+        Debug.Log($"Added {flowerName} to inventory!");
+    }
+
+    public void RemoveFlower(string flowerName)
+    {
+        if (flowers.Contains(flowerName))
+        {
+            flowers.Remove(flowerName);
+            Debug.Log($"Removed {flowerName} from inventory!");
+        }
+    }
+
+    public bool HasFlower(string flowerName)
+    {
+        return flowers.Contains(flowerName);
     }
 }

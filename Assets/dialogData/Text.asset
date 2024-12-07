@@ -16,7 +16,5 @@ MonoBehaviour:
   - Hai
   - Apa Kabar?
   responses:
-  - responseText: Yes
+  - responseText: 'Baik '
     dialogueObject: {fileID: 11400000, guid: a65f7f99e98435e49859de045bb6ef16, type: 2}
-  - responseText: No
-    dialogueObject: {fileID: 11400000, guid: 672f53e3f27924848a521beae6a2f05a, type: 2}

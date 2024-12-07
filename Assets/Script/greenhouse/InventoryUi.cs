@@ -1,73 +1,70 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; // Untuk Button dan UI Text
+using TMPro; // Untuk TextMeshPro
 
 public class InventoryUi : MonoBehaviour
 {
-    [Header("UI Elements")]
     [SerializeField] private GameObject inventoryPanel; // Panel inventory
+    [SerializeField] private Transform inventoryContent; // Tempat item ditampilkan
+    [SerializeField] private GameObject inventoryItemPrefab; // Prefab untuk item bunga
 
-    [Header("Planting Options")]
-    [SerializeField] private List<GameObject> plantPrefabs; // Daftar prefab bunga
-    [SerializeField] private List<int> plantQuantities; // Jumlah bunga di inventory
-
-    [Header("Pots in Greenhouse")]
-    [SerializeField] private List<ButtonPot> potButtons; // Daftar pot di greenhouse
-
-    private int selectedPlantIndex = -1; // Index bunga yang dipilih
+    private ButtonPot currentPot; // Pot yang sedang dipilih
 
     private void Start()
     {
-        HideInventory();
+        inventoryPanel.SetActive(false); // Sembunyikan panel di awal
+        InventoryManager.Instance.AddFlower("Rose");
+        InventoryManager.Instance.AddFlower("Sunflower");
+        InventoryManager.Instance.AddFlower("Tulip");
     }
 
-    public void ToggleInventory()
+    public void OpenInventory(ButtonPot pot)
     {
-        if (inventoryPanel != null)
+        currentPot = pot;
+        inventoryPanel.SetActive(true);
+        PopulateInventory();
+    }
+
+    public void CloseInventory()
+    {
+        inventoryPanel.SetActive(false);
+    }
+
+    private void PopulateInventory()
+    {
+        // Hapus item lama
+        foreach (Transform child in inventoryContent)
         {
-            inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+            Destroy(child.gameObject);
         }
-        else
+
+        // Tambahkan item bunga ke inventory UI
+        foreach (string flower in InventoryManager.Instance.flowers)
         {
-            Debug.LogWarning("Inventory panel is not assigned.");
+            GameObject item = Instantiate(inventoryItemPrefab, inventoryContent);
+            TMP_Text itemText = item.GetComponentInChildren<TMP_Text>();
+            if (itemText != null)
+            {
+                itemText.text = flower;
+            }
+
+            Button button = item.GetComponent<Button>();
+            if (button != null)
+            {
+                button.onClick.AddListener(() => SelectFlower(flower));
+            }
         }
     }
 
-    private void HideInventory()
+    private void SelectFlower(string flower)
     {
-        if (inventoryPanel != null)
+        if (currentPot != null)
         {
-            inventoryPanel.SetActive(false);
+            currentPot.PlantFlower(flower);
         }
-        else
-        {
-            Debug.LogWarning("Inventory panel is not assigned.");
-        }
-    }
 
-    public void SelectPlant(int index)
-    {
-        if (index >= 0 && index < plantPrefabs.Count && plantQuantities[index] > 0)
-        {
-            selectedPlantIndex = index;
-            Debug.Log($"Selected plant: {plantPrefabs[index].name}");
-        }
-        else
-        {
-            Debug.LogWarning("Invalid plant selection or out of stock.");
-        }
-    }
-
-    public void PlantInPot(ButtonPot potButton)
-    {
-        if (selectedPlantIndex >= 0 && potButton.IsEmpty() && plantQuantities[selectedPlantIndex] > 0)
-        {
-            potButton.Plant(plantPrefabs[selectedPlantIndex]);
-            plantQuantities[selectedPlantIndex]--;
-            Debug.Log($"Planted {plantPrefabs[selectedPlantIndex].name} in pot.");
-        }
-        else
-        {
-            Debug.LogWarning("Unable to plant: Invalid selection or pot is occupied.");
-        }
+        InventoryManager.Instance.RemoveFlower(flower); // Hapus bunga dari inventory
+        CloseInventory();
     }
 }

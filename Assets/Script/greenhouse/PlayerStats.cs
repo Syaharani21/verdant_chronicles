@@ -6,20 +6,25 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
 
-    public float damageMultiplier = 1f;
-    public float speedMultiplier = 1f;
-    public float healthMultiplier = 1f;
+    private float baseDamage = 10f;
+    private float baseSpeed = 5f;
+    private float baseHealth = 100f;
 
-    private void Awake()
+    public void IncreaseDamage(float multiplier)
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Debug.LogWarning("Multiple instances of PlayerStats found. Destroying duplicate.");
-            Destroy(gameObject);
-        }
+        baseDamage *= multiplier;
+        Debug.Log($"Damage increased! New Damage: {baseDamage}");
+    }
+
+    public void IncreaseSpeed(float multiplier)
+    {
+        baseSpeed *= multiplier;
+        Debug.Log($"Speed increased! New Speed: {baseSpeed}");
+    }
+
+    public void IncreaseHealth(float multiplier)
+    {
+        baseHealth *= multiplier;
+        Debug.Log($"Health increased! New Health: {baseHealth}");
     }
 }

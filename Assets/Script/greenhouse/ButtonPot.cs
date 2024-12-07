@@ -1,149 +1,97 @@
 using UnityEngine;
-using System.Collections.Generic; // Untuk List
 
 public class ButtonPot : MonoBehaviour
 {
-    [SerializeField] private GameObject inventoryPanel;
-    [SerializeField] private float growthTime = 10f; // Waktu pertumbuhan tanaman (dalam detik)
-    [SerializeField] private BuffType buffType;
-    [SerializeField] private float buffAmount = 1.5f;
+     [SerializeField] private GameObject flowerPrefab; // Prefab bunga
+    [SerializeField] private Transform flowerSpawnPoint; // Posisi bunga muncul
+    [SerializeField] private float growTime = 10f; // Waktu tumbuh bunga
+    [SerializeField] private string buffType = "damage"; // Buff dari bunga
+    [SerializeField] private float buffValue = 1.5f; // Nilai buff
 
-    private List<GameObject> currentPlants = new List<GameObject>(); // Menyimpan banyak tanaman
-    private bool isBuffActive = false;
+    private bool isPlanted = false;
+    private bool isGrown = false;
+    private string plantedFlowerType; // Jenis bunga yang ditanam
+    private GameObject currentFlower; // Referensi bunga di pot
 
-    // BuffType: Jenis buff yang diaktifkan oleh pot
-    public enum BuffType { Damage, Speed, Health }
-
-    // Fungsi untuk menampilkan inventory
-    public void ShowInventory()
+    private void OnMouseDown()
     {
-        inventoryPanel.SetActive(true);
-    }
-
-    // Fungsi untuk mengecek apakah pot kosong
-    public bool IsEmpty()
-    {
-        return currentPlants.Count == 0;
-    }
-
-    // Fungsi untuk menanam tanaman di pot
-    public void Plant(GameObject plantPrefab)
-    {
-        if (currentPlants.Count > 0)
+        if (!isPlanted)
         {
-            Debug.LogWarning("Pot already has a plant. Please remove it before planting a new one.");
-            return;
+            // Buka inventory jika belum ada bunga
+            FindObjectOfType<InventoryUi>().OpenInventory(this);
         }
-
-        // Instansiasi tanaman baru
-        GameObject newPlant = Instantiate(plantPrefab, transform);
-
-        // Set posisi tanaman agar sesuai dengan posisi pot
-        newPlant.transform.SetParent(transform);
-        newPlant.transform.localPosition = Vector3.zero; // Posisi default
-        newPlant.transform.localScale = Vector3.one;     // Reset skala
-        newPlant.transform.localRotation = Quaternion.identity;
-
-        // Tambahkan tanaman ke daftar
-        currentPlants.Add(newPlant);
-
-        Debug.Log($"Planted {plantPrefab.name} in pot {name}.");
-
-        // Aktifkan pertumbuhan tanaman
-        StartCoroutine(GrowPlant(newPlant));
-    }
-
-    // Coroutine untuk pertumbuhan tanaman
-    private IEnumerator<System.Collections.IEnumerator> GrowPlant(GameObject plant)
-    {
-        float timer = 0f;
-
-        while (timer < growthTime)
+        else if (isGrown)
         {
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        // Tandai tanaman siap dipanen
-        if (plant != null)
-        {
-            Debug.Log($"{plant.name} is ready to harvest!");
-            plant.GetComponent<Renderer>().material.color = Color.green; // Ubah warna (contoh)
+            // Panen bunga jika sudah tumbuh
+            HarvestFlower();
         }
     }
 
-    // Fungsi untuk memanen tanaman
-    // Fungsi untuk memanen tanaman
-public void Harvest()
-{
-    if (currentPlants.Count > 0)
+    public void PlantFlower(string flowerType)
     {
-        GameObject plantToHarvest = currentPlants[0];
-
-        // Tambahkan tanaman ke inventory pemain
-        InventoryManager.instance.AddToInventory(plantToHarvest); // Kirim objek GameObject, bukan nama
-
-        // Hapus tanaman dari pot
-        currentPlants.Remove(plantToHarvest);
-        Destroy(plantToHarvest);
-
-        Debug.Log($"Harvested plant from pot {name}.");
-
-        // Nonaktifkan buff jika tidak ada tanaman
-        DeactivateBuff();
-    }
-    else
-    {
-        Debug.LogWarning("No plants to harvest in this pot.");
-    }
-}
-
-
-    // Fungsi untuk mengaktifkan buff
-    public void ActivateBuff()
-    {
-        if (!isBuffActive)
+        if (!isPlanted)
         {
-            isBuffActive = true;
+            plantedFlowerType = flowerType;
+            isPlanted = true;
+            Debug.Log($"Planted {flowerType}!");
+            StartCoroutine(GrowFlower());
+        }
+    }
 
-            switch (buffType)
+    private System.Collections.IEnumerator GrowFlower()
+    {
+        yield return new WaitForSeconds(growTime);
+        isGrown = true;
+        Debug.Log("Flower fully grown!");
+
+        // Tampilkan bunga di pot
+        if (flowerPrefab != null && flowerSpawnPoint != null)
+        {
+            currentFlower = Instantiate(flowerPrefab, flowerSpawnPoint.position, Quaternion.identity, transform);
+        }
+    }
+
+    private void HarvestFlower()
+    {
+        if (isGrown)
+        {
+            Debug.Log($"Harvested {plantedFlowerType}! Applying buff...");
+
+            // Berikan buff ke pemain
+            ApplyBuff();
+
+            // Reset pot
+            isPlanted = false;
+            isGrown = false;
+
+            // Hapus bunga
+            if (currentFlower != null)
             {
-                case BuffType.Damage:
-                    PlayerStats.instance.damageMultiplier *= buffAmount;
+                Destroy(currentFlower);
+            }
+        }
+    }
+
+    private void ApplyBuff()
+    {
+        PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+        if (playerStats != null)
+        {
+            switch (buffType.ToLower())
+            {
+                case "damage":
+                    playerStats.IncreaseDamage(buffValue);
                     break;
-                case BuffType.Speed:
-                    PlayerStats.instance.speedMultiplier *= buffAmount;
+                case "speed":
+                    playerStats.IncreaseSpeed(buffValue);
                     break;
-                case BuffType.Health:
-                    PlayerStats.instance.healthMultiplier *= buffAmount;
+                case "health":
+                    playerStats.IncreaseHealth(buffValue);
+                    break;
+                default:
+                    Debug.LogWarning("Unknown buff type!");
                     break;
             }
-
-            Debug.Log($"Buff {buffType} activated.");
-        }
-    }
-
-    // Fungsi untuk menonaktifkan buff
-    public void DeactivateBuff()
-    {
-        if (isBuffActive)
-        {
-            isBuffActive = false;
-
-            switch (buffType)
-            {
-                case BuffType.Damage:
-                    PlayerStats.instance.damageMultiplier /= buffAmount;
-                    break;
-                case BuffType.Speed:
-                    PlayerStats.instance.speedMultiplier /= buffAmount;
-                    break;
-                case BuffType.Health:
-                    PlayerStats.instance.healthMultiplier /= buffAmount;
-                    break;
-            }
-
-            Debug.Log($"Buff {buffType} deactivated.");
         }
     }
 }
