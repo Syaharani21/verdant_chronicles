@@ -20571,14 +20571,14 @@ MonoBehaviour:
   - speaker: Elara
     line: "Bayu, I\u2019m heading to the village to meet Pak Septo. There\u2019s
       something I need to investigate."
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 69e27b88d77ca4344856f07551588e12, type: 3}
   - speaker: Bayu
     line: "Oh? Is it about your plants again? Be careful, Sis. Don\u2019t push yourself
       too hard."
     sprite: {fileID: 21300000, guid: 8a3a1f7c2c14811448294c944fd0a63d, type: 3}
   - speaker: Elara
     line: "Don\u2019t worry. I\u2019ll be back before you finish your book!"
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 69e27b88d77ca4344856f07551588e12, type: 3}
   speakerText: {fileID: 1418753400}
   dialogText: {fileID: 1705260683}
   speakerImage: {fileID: 604812479}
@@ -24749,21 +24749,21 @@ MonoBehaviour:
   - speaker: Elara
     line: "What is this? This magic energy\u2026 it feels strange. Strong, but unnatural.
       If left unchecked, my plants might wither\u2014or worse."
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 69e27b88d77ca4344856f07551588e12, type: 3}
   - speaker: Senadine
     line: Elara, talking to yourself again? Something wrong here?
     sprite: {fileID: 21300000, guid: be94974c42912234cb52321fb313c106, type: 3}
   - speaker: Elara
     line: "My plants are affected by some kind of strange magic energy. It doesn\u2019t
       belong here."
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 69e27b88d77ca4344856f07551588e12, type: 3}
   - speaker: Senadine
     line: "Hmm\u2026 that sounds serious. I\u2019ve heard Pak Septo mention something
       like this before. Maybe he knows more."
     sprite: {fileID: 21300000, guid: be94974c42912234cb52321fb313c106, type: 3}
   - speaker: Elara
     line: "Pak Septo, huh? Alright, I\u2019ll go talk to him. Thanks, Senadin."
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 69e27b88d77ca4344856f07551588e12, type: 3}
   speakerText: {fileID: 1418753400}
   dialogText: {fileID: 1705260683}
   speakerImage: {fileID: 604812479}
@@ -47341,14 +47341,14 @@ MonoBehaviour:
   - speaker: Elara
     line: Pak Septo, sorry to disturb you. I need to ask about some strange magic
       energy.
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 69e27b88d77ca4344856f07551588e12, type: 3}
   - speaker: Pak Septo
     line: "Ah, Elara. I\u2019ve heard about this phenomenon. That energy comes from
       Tirtayana, a sacred site once filled with peace."
     sprite: {fileID: 21300000, guid: dc573d3e46d858345a093e418696d501, type: 3}
   - speaker: Elara
     line: What happened there?
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 69e27b88d77ca4344856f07551588e12, type: 3}
   - speaker: Pak Septo
     line: "There\u2019s a disturbance at its source, likely caused by a creature
       that has taken over the place. If the root of the problem isn\u2019t dealt
@@ -47356,7 +47356,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: dc573d3e46d858345a093e418696d501, type: 3}
   - speaker: Elara
     line: "I understand. I\u2019ll go to Tirtayana and put an end to this."
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 69e27b88d77ca4344856f07551588e12, type: 3}
   - speaker: Pak Septo
     line: "You\u2019ve always been brave, Elara. Take this\u2014some healing potions.
       Stay safe."
