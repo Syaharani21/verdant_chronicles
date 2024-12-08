@@ -10,6 +10,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
+     public DialogManager dialogManager; // Referensi ke dialog manager
+     public GameObject dialogIcon;       // Ikon untuk menunjukkan bahwa dialog tersedia
+    private bool hasTalked = false;  
+
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
@@ -173,4 +177,46 @@ public class PlayerMovement : MonoBehaviour
             stepTimer = 0; // Reset timer jika tidak bergerak atau di udara
         }
     }
+
+    private void Start()
+    {
+        // Pastikan ikon dialog aktif saat awal permainan
+        if (dialogIcon != null)
+        {
+            dialogIcon.SetActive(true);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Cek jika collider adalah NPC dan dialog belum pernah terjadi
+        if (other.CompareTag("NPC") && !hasTalked)
+        {
+            if (dialogIcon != null)
+            {
+                dialogIcon.SetActive(false); // Sembunyikan ikon dialog
+            }
+
+            if (dialogManager != null)
+            {
+                dialogManager.StartDialog(); // Memulai dialog
+            }
+
+            hasTalked = true; // Tandai bahwa dialog sudah terjadi
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        // Cek jika collider adalah NPC
+        if (other.CompareTag("NPC"))
+        {
+            // Pastikan dialogIcon tetap tidak muncul setelah berbicara
+            if (dialogIcon != null && hasTalked)
+            {
+                dialogIcon.SetActive(false);
+            }
+        }
+    }
+
 }

@@ -1,34 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class npc : MonoBehaviour
+public class NPC : MonoBehaviour
 {
-    public DialogManager dialogManager; 
-    public GameObject dialogIcon;       
-    private bool hasTalked = false; 
-   private void Start()
+    public DialogManager dialogManager; // Referensi ke dialog manager
+    public GameObject dialogIcon;       // Ikon dialog
+
+    private bool playerInRange = false;
+    private bool hasTalked = false;
+
+    private void Start()
     {
-       
         if (dialogIcon != null)
         {
-            dialogIcon.SetActive(true);
-        } 
+            dialogIcon.SetActive(true); // Tampilkan ikon di awal
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void Update()
     {
-        if (other.CompareTag("Player") && !hasTalked)
+        if (playerInRange && !hasTalked)
         {
             if (dialogIcon != null)
             {
-                dialogIcon.SetActive(false); 
+                dialogIcon.SetActive(false); // Sembunyikan ikon dialog
             }
+
             if (dialogManager != null)
             {
-                dialogManager.StartDialog(); 
+                dialogManager.StartDialog(); // Mulai dialog
             }
-            hasTalked = true; 
+
+            hasTalked = true; // Tandai dialog sudah dimulai
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+
+            if (dialogIcon != null)
+            {
+                dialogIcon.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+
+            if (dialogIcon != null)
+            {
+                dialogIcon.SetActive(false);
+            }
         }
     }
 }

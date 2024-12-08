@@ -469,7 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cloudPanel: {fileID: 2117256675}
   cloudSpeed: 1000
-  targetScene: Level1
+  targetScene: Level2
 --- !u!4 &437275679
 Transform:
   m_ObjectHideFlags: 0

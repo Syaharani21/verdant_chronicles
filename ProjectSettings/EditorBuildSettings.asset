@@ -23,8 +23,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Transisi.unity
     guid: 8cf982fbb22c9414d93c9ea79750379c
-  - enabled: 1
-    path: Assets/Scenes/dialog.unity
-    guid: 3332a6ccf2e95d046be135c18bea6209
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 3aefe6c4c9289aa49af2b2e84ebc4af8, type: 2}

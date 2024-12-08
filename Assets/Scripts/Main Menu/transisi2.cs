@@ -2,60 +2,56 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneTransition : MonoBehaviour
+public class transisi2 : MonoBehaviour
 {
-    public RectTransform cloudPanel;  // Panel awan untuk transisi
+   public RectTransform cloudPanel;  // Panel awan (UI element)
     public float cloudSpeed = 1000f;  // Kecepatan gerakan awan
     public string targetScene;        // Nama scene tujuan
 
-    private bool isTransitioning = false;
+    private bool isTransitioningIn = false;
+    private bool isTransitioningOut = false;
 
     void Start()
     {
         // Pastikan awan dimulai di luar layar
         cloudPanel.anchoredPosition = new Vector2(-Screen.width, 0);
+        isTransitioningIn = true;  // Mulai transisi masuk
     }
 
-    public void StartTransition(string sceneName)
+    void Update()
     {
-        if (!isTransitioning)
+        if (isTransitioningIn)
         {
-            isTransitioning = true;
-            targetScene = sceneName;
-            StartCoroutine(TransitionIn());
-        }
-    }
-
-    IEnumerator TransitionIn()
-    {
-        while (cloudPanel.anchoredPosition.x < 0)
-        {
+            // Gerakan awan masuk
             cloudPanel.anchoredPosition += Vector2.right * cloudSpeed * Time.deltaTime;
-            yield return null;
-        }
 
-        yield return LoadScene();
+            if (cloudPanel.anchoredPosition.x >= 0)  // Awan menutupi layar
+            {
+                isTransitioningIn = false;
+                StartCoroutine(LoadNextScene());
+            }
+        }
+        else if (isTransitioningOut)
+        {
+            // Gerakan awan keluar
+            cloudPanel.anchoredPosition += Vector2.right * cloudSpeed * Time.deltaTime;
+
+            if (cloudPanel.anchoredPosition.x >= Screen.width)  // Awan keluar layar
+            {
+                isTransitioningOut = false;
+            }
+        }
     }
 
-    IEnumerator LoadScene()
+    IEnumerator LoadNextScene()
     {
+        // Tunggu sebentar sebelum memuat scene
+        yield return new WaitForSeconds(1f);
+
+        // Muat scene berikutnya
         SceneManager.LoadScene("GreenHouse");
 
-        // Tunggu beberapa frame agar scene selesai dimuat
-        yield return new WaitForSeconds(0.5f);
-
-        // Transisi keluar
-        StartCoroutine(TransitionOut());
-    }
-
-    IEnumerator TransitionOut()
-    {
-        while (cloudPanel.anchoredPosition.x < Screen.width)
-        {
-            cloudPanel.anchoredPosition += Vector2.right * cloudSpeed * Time.deltaTime;
-            yield return null;
-        }
-
-        isTransitioning = false;
+        // Setelah scene baru dimuat, awan bergerak keluar
+        isTransitioningOut = true;
     }
 }
