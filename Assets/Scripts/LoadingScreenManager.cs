@@ -49,7 +49,7 @@ public class CloudTransition : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         // Muat scene berikutnya
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Level2");
 
         // Setelah scene baru dimuat, awan bergerak keluar
         isTransitioningOut = true;

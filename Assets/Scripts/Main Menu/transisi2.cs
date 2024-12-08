@@ -2,56 +2,60 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class transisi2 : MonoBehaviour
+public class SceneTransition : MonoBehaviour
 {
-    public RectTransform cloudPanel;  // Panel awan (UI element)
+    public RectTransform cloudPanel;  // Panel awan untuk transisi
     public float cloudSpeed = 1000f;  // Kecepatan gerakan awan
     public string targetScene;        // Nama scene tujuan
 
-    private bool isTransitioningIn = false;
-    private bool isTransitioningOut = false;
+    private bool isTransitioning = false;
 
     void Start()
     {
         // Pastikan awan dimulai di luar layar
         cloudPanel.anchoredPosition = new Vector2(-Screen.width, 0);
-        isTransitioningIn = true;  // Mulai transisi masuk
     }
 
-    void Update()
+    public void StartTransition(string sceneName)
     {
-        if (isTransitioningIn)
+        if (!isTransitioning)
         {
-            // Gerakan awan masuk
-            cloudPanel.anchoredPosition += Vector2.right * cloudSpeed * Time.deltaTime;
-
-            if (cloudPanel.anchoredPosition.x >= 0)  // Awan menutupi layar
-            {
-                isTransitioningIn = false;
-                StartCoroutine(LoadNextScene());
-            }
-        }
-        else if (isTransitioningOut)
-        {
-            // Gerakan awan keluar
-            cloudPanel.anchoredPosition += Vector2.right * cloudSpeed * Time.deltaTime;
-
-            if (cloudPanel.anchoredPosition.x >= Screen.width)  // Awan keluar layar
-            {
-                isTransitioningOut = false;
-            }
+            isTransitioning = true;
+            targetScene = sceneName;
+            StartCoroutine(TransitionIn());
         }
     }
 
-    IEnumerator LoadNextScene()
+    IEnumerator TransitionIn()
     {
-        // Muat scene berikutnya
+        while (cloudPanel.anchoredPosition.x < 0)
+        {
+            cloudPanel.anchoredPosition += Vector2.right * cloudSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        yield return LoadScene();
+    }
+
+    IEnumerator LoadScene()
+    {
         SceneManager.LoadScene("GreenHouse");
 
-        // Setelah scene baru dimuat, awan bergerak keluar
-        isTransitioningOut = true;
+        // Tunggu beberapa frame agar scene selesai dimuat
+        yield return new WaitForSeconds(0.5f);
 
-        // Akhiri coroutine dengan yield break
-        yield break;
+        // Transisi keluar
+        StartCoroutine(TransitionOut());
+    }
+
+    IEnumerator TransitionOut()
+    {
+        while (cloudPanel.anchoredPosition.x < Screen.width)
+        {
+            cloudPanel.anchoredPosition += Vector2.right * cloudSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        isTransitioning = false;
     }
 }
