@@ -8,33 +8,44 @@ public class DialogManager : MonoBehaviour
     [System.Serializable]
     public struct DialogLine
     {
-        public string speaker; 
-        public string line;    
-        public Sprite sprite;  
+        public string speaker;
+        public string line;
+        public Sprite sprite;
     }
 
-    public DialogLine[] dialogLines; 
-    public TextMeshProUGUI speakerText; 
-    public TextMeshProUGUI dialogText;  
-    public Image speakerImage;          
-    public GameObject dialogPanel;      
+    public DialogLine[] dialogLines;      
+    public TextMeshProUGUI speakerText;  
+    public TextMeshProUGUI dialogText;   
+    public Image speakerImage;           
+    public GameObject dialogPanel;       
     public float typingSpeed = 0.05f;    
 
-    private int currentLine = 0;        
+    private int currentLine = 0;         
     private bool isDialogActive = false;
-    private Coroutine typingCoroutine;  
+    private Coroutine typingCoroutine;   
+    private bool isSkipping = false;    
+
+    public bool IsDialogActive => isDialogActive; 
 
     void Start()
     {
-        dialogPanel.SetActive(false);
+        dialogPanel.SetActive(false); 
     }
 
     void Update()
     {
-        // Lanjutkan dialog dengan tombol E
-        if (isDialogActive && Input.GetKeyDown(KeyCode.E) && typingCoroutine == null)
+        if (isDialogActive && Input.GetKeyDown(KeyCode.E))
         {
-            ShowLine(); 
+            if (typingCoroutine != null)
+            {
+                // Jika efek mengetik sedang berlangsung, skip ke akhir teks
+                isSkipping = true;
+            }
+            else
+            {
+                // Jika teks sudah selesai, lanjutkan ke baris berikutnya
+                ShowLine();
+            }
         }
     }
 
@@ -62,26 +73,35 @@ public class DialogManager : MonoBehaviour
             speakerText.text = dialogLines[currentLine].speaker;
             speakerImage.sprite = dialogLines[currentLine].sprite;
 
-            // Mulai efek mengetik untuk teks
+            // Mulai efek mengetik
             typingCoroutine = StartCoroutine(TypewriterEffect(dialogLines[currentLine].line));
-            currentLine++;
         }
         else
         {
-            EndDialog(); 
+            EndDialog();
         }
     }
 
     private IEnumerator TypewriterEffect(string line)
     {
-        dialogText.text = ""; // Kosongkan dialog sebelum mulai mengetik
+        dialogText.text = ""; 
+        isSkipping = false;   // Reset status skip
+
         foreach (char c in line.ToCharArray())
         {
-            dialogText.text += c; // Tambahkan karakter satu per satu
-            yield return new WaitForSeconds(typingSpeed); // Tunggu sebelum menambahkan karakter berikutnya
+            if (isSkipping)
+            {
+                dialogText.text = line;
+                break;
+            }
+
+            dialogText.text += c; 
+            yield return new WaitForSeconds(typingSpeed); 
         }
 
-        typingCoroutine = null; // Ketikan selesai
+        typingCoroutine = null;
+        isSkipping = false;     
+        currentLine++;          // Lanjutkan ke dialog berikutnya
     }
 
     public void EndDialog()

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -12,7 +13,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private AudioClip rangedSound;
     [SerializeField] private AudioClip meleeattackSound;
     [SerializeField] private AudioClip weaponSwitchSound;
-    [SerializeField] private int fireballDamage; // Tambahkan field untuk damage ranged attack
+    [SerializeField] private int fireballDamage;
+
+    // Menambahkan referensi ke DialogManager
+    [SerializeField] private DialogManager[] dialogManagers;
 
     private Animator anim;
     private PlayerMovement playerMovement;
@@ -24,10 +28,22 @@ public class PlayerAttack : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
+
+        // Pastikan dialogManagers sudah diatur melalui Inspector
+        if (dialogManagers.Length == 0)
+        {
+            Debug.LogError("DialogManager belum diatur di PlayerAttack!");
+        }
     }
 
     private void Update()
     {
+        // Cek apakah salah satu dialog aktif, jika aktif maka hentikan serangan
+        if (IsAnyDialogActive())
+        {
+            return; // Jangan lakukan apa pun selama dialog berlangsung
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             isMeleeAttack = false;
@@ -48,6 +64,18 @@ public class PlayerAttack : MonoBehaviour
         }
 
         cooldownTimer += Time.deltaTime;
+    }
+
+    private bool IsAnyDialogActive()
+    {
+        foreach (var dialogManager in dialogManagers)
+        {
+            if (dialogManager != null && dialogManager.IsDialogActive)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private IEnumerator RangedAttack()

@@ -14057,7 +14057,7 @@ MonoBehaviour:
   boxCollider: {fileID: 509451364}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   attackSound: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
 --- !u!114 &509451363
 MonoBehaviour:
@@ -17233,7 +17233,7 @@ Transform:
   m_GameObject: {fileID: 633981368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -35.32, y: -2.61, z: -0.01}
+  m_LocalPosition: {x: -43.92, y: -2.61, z: -0.01}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17295,6 +17295,10 @@ MonoBehaviour:
   meleeattackSound: {fileID: 8300000, guid: 99c4ab038872f404189a39530935908c, type: 3}
   weaponSwitchSound: {fileID: 8300000, guid: 685ab39cc9959be42ad3ae8f5f82e517, type: 3}
   fireballDamage: 20
+  dialogManagers:
+  - {fileID: 882521911}
+  - {fileID: 747881509}
+  - {fileID: 1700103563}
 --- !u!114 &633981376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17318,13 +17322,15 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 0
-  dialogManager: {fileID: 0}
-  dialogIcon: {fileID: 0}
+  dialogManager1: {fileID: 882521911}
+  dialogManager2: {fileID: 747881509}
+  dialogManager3: {fileID: 1700103563}
+  dialogIcon: {fileID: 667161837}
   jumpSound: {fileID: 8300000, guid: 397c5015cace3134ca10173e27f08447, type: 3}
   dashSound: {fileID: 8300000, guid: 972736f4829aa2341960de04d787449d, type: 3}
   stepSound: {fileID: 8300000, guid: 423179250f799bd429e458f6c6919dc4, type: 3}
   stepInterval: 0.5
-  maxJumpCount: 50
+  maxJumpCount: 10
 --- !u!114 &633981377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24582,7 +24588,7 @@ Transform:
   m_GameObject: {fileID: 882521905}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.68, y: -2.6092, z: 0}
+  m_LocalPosition: {x: -32.85, y: -2.6092, z: 0}
   m_LocalScale: {x: 0.72245795, y: 0.6527635, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48082,7 +48088,7 @@ MonoBehaviour:
   boxCollider: {fileID: 1706109560}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   attackSound: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
 --- !u!1 &1706955853
 GameObject:

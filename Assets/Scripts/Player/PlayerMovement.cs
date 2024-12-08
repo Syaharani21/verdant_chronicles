@@ -10,9 +10,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
-     public DialogManager dialogManager; // Referensi ke dialog manager
-     public GameObject dialogIcon;       // Ikon untuk menunjukkan bahwa dialog tersedia
-    private bool hasTalked = false;  
+    // Menambahkan tiga referensi ke DialogManager
+    public DialogManager dialogManager1; // Referensi DialogManager pertama
+    public DialogManager dialogManager2; // Referensi DialogManager kedua
+    public DialogManager dialogManager3; // Referensi DialogManager ketiga
+
+    public GameObject dialogIcon;       // Ikon untuk menunjukkan bahwa dialog tersedia
+    private bool hasTalked = false;
 
     private Rigidbody2D body;
     private Animator anim;
@@ -47,10 +51,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        // Cek jika salah satu dari dialog manager aktif
+        if ((dialogManager1 != null && dialogManager1.IsDialogActive) ||
+            (dialogManager2 != null && dialogManager2.IsDialogActive) ||
+            (dialogManager3 != null && dialogManager3.IsDialogActive))
+        {
+            anim.SetBool("run", false); // Set animasi idle
+            body.velocity = Vector2.zero; // Hentikan pergerakan
+            return; // Jangan lanjutkan input atau pergerakan saat dialog aktif
+        }
+
         HandleInput();
         ProcessDash();
         ManageCooldowns();
-        HandleStepSound(); // Menangani suara langkah
+        HandleStepSound();
     }
 
     private void HandleInput()
@@ -68,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded())
             jumpCount = 0;
 
-        // Only move and jump when not dashing
+        // Hanya bergerak dan melompat saat tidak dashing dan tidak ada dialog
         if (!isDashing)
         {
             Move();
@@ -94,31 +108,30 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Jump()
-{
-    if (jumpCount < maxJumpCount)
     {
-        anim.SetTrigger("jump");
-        body.velocity = new Vector2(body.velocity.x, jumpPower);
-        jumpCount++;
-
-        // Mainkan suara setiap kali pemain melompat
-        if (jumpSound != null)
+        if (jumpCount < maxJumpCount)
         {
-            SoundManager.instance.PlaySound(jumpSound);
+            anim.SetTrigger("jump");
+            body.velocity = new Vector2(body.velocity.x, jumpPower);
+            jumpCount++;
+
+            // Mainkan suara setiap kali pemain melompat
+            if (jumpSound != null)
+            {
+                SoundManager.instance.PlaySound(jumpSound);
+            }
         }
     }
-}
-
 
     private void StartDash()
     {
-        // Start dash
+        // Mulai dash
         isDashing = true;
         dashTime = 0;
         dashCooldownTime = dashCooldown;
         anim.SetTrigger("dash");
 
-        // Set dash speed
+        // Set kecepatan dash
         body.velocity = new Vector2(dashSpeed * Mathf.Sign(horizontalInput), body.velocity.y);
     }
 
@@ -197,9 +210,18 @@ public class PlayerMovement : MonoBehaviour
                 dialogIcon.SetActive(false); // Sembunyikan ikon dialog
             }
 
-            if (dialogManager != null)
+            // Mulai dialog menggunakan salah satu DialogManager
+            if (dialogManager1 != null && !dialogManager1.IsDialogActive)
             {
-                dialogManager.StartDialog(); // Memulai dialog
+                dialogManager1.StartDialog(); // Memulai dialog manager pertama
+            }
+            else if (dialogManager2 != null && !dialogManager2.IsDialogActive)
+            {
+                dialogManager2.StartDialog(); // Memulai dialog manager kedua
+            }
+            else if (dialogManager3 != null && !dialogManager3.IsDialogActive)
+            {
+                dialogManager3.StartDialog(); // Memulai dialog manager ketiga
             }
 
             hasTalked = true; // Tandai bahwa dialog sudah terjadi
@@ -218,5 +240,4 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
 }
