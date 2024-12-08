@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 public class Teleport : MonoBehaviour
 {
 
-    public void LoadTransisi()
+    public void OnSceneChangeButtonClick()
     {
-        SceneManager.LoadScene("Transisi");
+         SceneManager.LoadScene("Level2");
     }
 }

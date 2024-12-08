@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Teleport1 : MonoBehaviour
+public class TeleportButtonManager : MonoBehaviour
 {
-
-    public void LoadTransisi()
+   public void TeleportToGreenhouse()
     {
-        SceneManager.LoadScene("Transisi1");
+        SceneManager.LoadScene("GreenHouse");   // Pindah ke scene transisi awan
     }
 }
