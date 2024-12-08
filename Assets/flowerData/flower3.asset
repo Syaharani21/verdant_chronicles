@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad23d44a59240ee4fb523e92bc434227, type: 3}
-  m_Name: no
+  m_Script: {fileID: 11500000, guid: 0903f675fc44b8243b790ec89dfb6b16, type: 3}
+  m_Name: flower3
   m_EditorClassIdentifier: 
-  dialogue: []
-  responses: []
+  flowerName: Bunga
+  flowerSprite: {fileID: 21300000, guid: d0d2cdf40f621c846ab3456e75562ec7, type: 3}
+  damageMultiplier: 11
+  speedBoost: 16
+  healthMultiplier: 10

@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad23d44a59240ee4fb523e92bc434227, type: 3}
-  m_Name: Text
+  m_Script: {fileID: 11500000, guid: 0903f675fc44b8243b790ec89dfb6b16, type: 3}
+  m_Name: flower1
   m_EditorClassIdentifier: 
-  dialogue:
-  - Hai
-  - Apa Kabar?
-  responses:
-  - responseText: 'Baik '
-    dialogueObject: {fileID: 11400000, guid: a65f7f99e98435e49859de045bb6ef16, type: 2}
+  flowerName: Bunga
+  flowerSprite: {fileID: 21300000, guid: a1f33d422891228499690498eb99de7c, type: 3}
+  damageMultiplier: 15
+  speedBoost: 20
+  healthMultiplier: 10
