@@ -23,6 +23,6 @@ public class LobbyManager : MonoBehaviour
     // Load the next scene (you can replace "GameScene" with your next scene name)
     private void LoadNextScene()
     {
-        SceneManager.LoadScene("Loading");
+        SceneManager.LoadScene("Level2");
     }
 }
