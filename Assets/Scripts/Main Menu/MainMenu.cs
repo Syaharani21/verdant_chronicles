@@ -49,4 +49,10 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f; // Reset time scale before loading new scene
         SceneManager.LoadScene(lobbyMenuSceneName);
     }
+
+    public void QuitApplication()
+    {
+        Debug.Log("Quitting application...");
+        Application.Quit(); // Keluar dari aplikasi (tidak bekerja di Editor)
+    }
 }

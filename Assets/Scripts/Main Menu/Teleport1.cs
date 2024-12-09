@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class TeleportButtonManager : MonoBehaviour
 {
    public void TeleportToGreenhouse()
-    {
-        SceneManager.LoadScene("GreenHouse");   // Pindah ke scene transisi awan
-    }
-}
+    { Debug.Log("Attempting to load scene 'Nusendra'");
+    Time.timeScale = 1f;
+    SceneManager.LoadScene("GreenHouse");
+}}
