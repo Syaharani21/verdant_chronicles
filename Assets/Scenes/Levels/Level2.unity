@@ -1230,7 +1230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 39254076}
   - component: {fileID: 39254077}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pllatform (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2029,7 +2029,7 @@ GameObject:
   m_Component:
   - component: {fileID: 82030678}
   - component: {fileID: 82030679}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground boss area no stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2701,9 +2701,9 @@ GameObject:
   m_Component:
   - component: {fileID: 125127225}
   - component: {fileID: 125127226}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground Horizontal 2048 (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8646,9 +8646,9 @@ GameObject:
   m_Component:
   - component: {fileID: 344085645}
   - component: {fileID: 344085646}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground Horizontal 2048 (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9158,7 +9158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 357128595}
   - component: {fileID: 357128596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ground 3 2 seamless (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9242,9 +9242,9 @@ GameObject:
   m_Component:
   - component: {fileID: 357393063}
   - component: {fileID: 357393064}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground Horizontal 2048 (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10346,7 +10346,7 @@ GameObject:
   - component: {fileID: 378252806}
   - component: {fileID: 378252805}
   - component: {fileID: 378252804}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Kecubung
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -10387,7 +10387,7 @@ MonoBehaviour:
   boxCollider: {fileID: 378252806}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   attackSound: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
 --- !u!114 &378252805
 MonoBehaviour:
@@ -12003,9 +12003,9 @@ GameObject:
   m_Component:
   - component: {fileID: 429040997}
   - component: {fileID: 429040998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground miring 1024 (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13882,7 +13882,7 @@ GameObject:
   - component: {fileID: 509451364}
   - component: {fileID: 509451363}
   - component: {fileID: 509451362}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Kecubung
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -13923,7 +13923,7 @@ MonoBehaviour:
   boxCollider: {fileID: 509451364}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   attackSound: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
 --- !u!114 &509451363
 MonoBehaviour:
@@ -16399,9 +16399,9 @@ GameObject:
   m_Component:
   - component: {fileID: 619018660}
   - component: {fileID: 619018661}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground Horizontal 2048 (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16510,7 +16510,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000b99a7617e1dffde02be438e1a11e60a52d943babf12f19e2
+  m_ApplyToSortingLayers: 00000000b99a7617e1dffde02be438e1a11e60a52d943babf12f19e2831d35721b68ffa68df71ec809c6c0797b4582b66b15118c
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -16974,7 +16974,8 @@ GameObject:
   - component: {fileID: 633981374}
   - component: {fileID: 633981377}
   - component: {fileID: 633981378}
-  m_Layer: 10
+  - component: {fileID: 633981379}
+  m_Layer: 9
   m_Name: Layer-6
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -17114,7 +17115,7 @@ Transform:
   m_GameObject: {fileID: 633981368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43.92, y: -2.61, z: -0.01}
+  m_LocalPosition: {x: -41, y: -2.5, z: -0.01}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17171,7 +17172,7 @@ MonoBehaviour:
   meleeDamage: 40
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   rangedSound: {fileID: 8300000, guid: 5e6f3bbabc30a4e4995ff750ff55befd, type: 3}
   meleeattackSound: {fileID: 8300000, guid: 99c4ab038872f404189a39530935908c, type: 3}
   weaponSwitchSound: {fileID: 8300000, guid: 685ab39cc9959be42ad3ae8f5f82e517, type: 3}
@@ -17199,7 +17200,7 @@ MonoBehaviour:
   dashCooldown: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   wallLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -17211,7 +17212,7 @@ MonoBehaviour:
   dashSound: {fileID: 8300000, guid: 972736f4829aa2341960de04d787449d, type: 3}
   stepSound: {fileID: 8300000, guid: 423179250f799bd429e458f6c6919dc4, type: 3}
   stepInterval: 0.5
-  maxJumpCount: 10
+  maxJumpCount: 4
 --- !u!114 &633981377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17244,6 +17245,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxFactor: 0
+--- !u!114 &633981379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633981368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225b6ede6e048df4ca294522073054a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &635656271
 GameObject:
   m_ObjectHideFlags: 0
@@ -17957,7 +17970,7 @@ GameObject:
   m_Component:
   - component: {fileID: 667120773}
   - component: {fileID: 667120774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground boss area no stone (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18783,6 +18796,96 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &706858454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 706858457}
+  - component: {fileID: 706858456}
+  - component: {fileID: 706858455}
+  m_Layer: 0
+  m_Name: RestartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &706858455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706858454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8377dfd435c62a84e8835f650a7ac612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &706858456
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706858454}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &706858457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706858454}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -41, y: -2.5, z: -0.14948596}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &708557817
 GameObject:
   m_ObjectHideFlags: 0
@@ -20468,7 +20571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 748715746}
   - component: {fileID: 748715747}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ground 3 2 seamless (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22484,7 +22587,7 @@ GameObject:
   - component: {fileID: 841458485}
   - component: {fileID: 841458484}
   - component: {fileID: 841458483}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Kecubung
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -22525,7 +22628,7 @@ MonoBehaviour:
   boxCollider: {fileID: 841458485}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   attackSound: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
 --- !u!114 &841458484
 MonoBehaviour:
@@ -23143,7 +23246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 846007030}
   - component: {fileID: 846007031}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ground 3 2 seamless
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23619,7 +23722,7 @@ GameObject:
   - component: {fileID: 862073764}
   - component: {fileID: 862073763}
   - component: {fileID: 862073762}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Kecubung
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -23660,7 +23763,7 @@ MonoBehaviour:
   boxCollider: {fileID: 862073764}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   attackSound: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
 --- !u!114 &862073763
 MonoBehaviour:
@@ -24979,6 +25082,96 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &899226815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 899226818}
+  - component: {fileID: 899226817}
+  - component: {fileID: 899226816}
+  m_Layer: 0
+  m_Name: FallPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &899226816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899226815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f4a9dc6b1a75f40826203afaa793e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &899226817
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899226815}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.01852417, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 28.451477, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &899226818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899226815}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 470.85, y: -54.15335, z: -0.084005885}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901281945
 GameObject:
   m_ObjectHideFlags: 0
@@ -27203,7 +27396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 992687482}
   - component: {fileID: 992687483}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pllatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27843,7 +28036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1029462801}
   - component: {fileID: 1029462802}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stage 3 boss ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28671,7 +28864,7 @@ GameObject:
   - component: {fileID: 1061475007}
   - component: {fileID: 1061475006}
   - component: {fileID: 1061475005}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Kecubung
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -28712,7 +28905,7 @@ MonoBehaviour:
   boxCollider: {fileID: 1061475007}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   attackSound: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
 --- !u!114 &1061475006
 MonoBehaviour:
@@ -30086,9 +30279,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1143657535}
   - component: {fileID: 1143657536}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground miring 1024
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31793,7 +31986,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1173755279}
   - component: {fileID: 1173755280}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ground 3 seamless
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32915,7 +33108,7 @@ GameObject:
   - component: {fileID: 1207192790}
   - component: {fileID: 1207192789}
   - component: {fileID: 1207192788}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Kecubung
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -32956,7 +33149,7 @@ MonoBehaviour:
   boxCollider: {fileID: 1207192790}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   attackSound: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
 --- !u!114 &1207192789
 MonoBehaviour:
@@ -35199,9 +35392,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1295490751}
   - component: {fileID: 1295490752}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: banua tebing
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36077,7 +36270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1324938023}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -39517,9 +39710,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1440141808}
   - component: {fileID: 1440141809}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground Horizontal 2048 (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39943,7 +40136,7 @@ GameObject:
   - component: {fileID: 1473208265}
   m_Layer: 11
   m_Name: Boss
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39964,14 +40157,14 @@ MonoBehaviour:
   detectionSize: {x: 20, y: 4}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   attackPoint: {fileID: 2079014782}
-  attackSize: {x: 5, y: 4}
+  attackSize: {x: 6, y: 4}
   attackDamage: 30
   attackCooldown: 2
   attackLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   attackSound1: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
   attackSound2: {fileID: 8300000, guid: 99c4ab038872f404189a39530935908c, type: 3}
   speed: 4
@@ -40098,8 +40291,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -501665807
-  m_SortingLayer: 0
+  m_SortingLayerID: -1945037461
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1772472468, guid: 56217c392ebc07b4d86e0d55b4ae9e98, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -40227,7 +40420,7 @@ GameObject:
   - component: {fileID: 1473874942}
   - component: {fileID: 1473874941}
   - component: {fileID: 1473874940}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Kecubung
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -40268,7 +40461,7 @@ MonoBehaviour:
   boxCollider: {fileID: 1473874942}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   attackSound: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
 --- !u!114 &1473874941
 MonoBehaviour:
@@ -44242,7 +44435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1604015574}
   - component: {fileID: 1604015575}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stage 3 boss ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45452,7 +45645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1637144186}
   - component: {fileID: 1637144187}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pllatform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46462,7 +46655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1682230269}
   - component: {fileID: 1682230270}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ground 3 seamless (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47450,7 +47643,7 @@ GameObject:
   - component: {fileID: 1706109560}
   - component: {fileID: 1706109559}
   - component: {fileID: 1706109564}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Kecubung
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -47628,7 +47821,7 @@ MonoBehaviour:
   boxCollider: {fileID: 1706109560}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   attackSound: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
 --- !u!1 &1706955853
 GameObject:
@@ -49471,7 +49664,7 @@ GameObject:
   - component: {fileID: 1835095203}
   - component: {fileID: 1835095202}
   - component: {fileID: 1835095201}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Kecubung
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -49512,7 +49705,7 @@ MonoBehaviour:
   boxCollider: {fileID: 1835095203}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   attackSound: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
 --- !u!114 &1835095202
 MonoBehaviour:
@@ -50919,7 +51112,7 @@ GameObject:
   - component: {fileID: 1891224320}
   - component: {fileID: 1891224319}
   - component: {fileID: 1891224318}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Kecubung
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -50960,7 +51153,7 @@ MonoBehaviour:
   boxCollider: {fileID: 1891224320}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   attackSound: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
 --- !u!114 &1891224319
 MonoBehaviour:
@@ -52337,9 +52530,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1969753789}
   - component: {fileID: 1969753790}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground Horizontal 2048 (6)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53823,7 +54016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2024013342}
   - component: {fileID: 2024013343}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ground 3 seamless (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54579,9 +54772,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2053934938}
   - component: {fileID: 2053934937}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground Miring 4096
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54747,7 +54940,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2057895538}
   - component: {fileID: 2057895539}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ground 3 2 seamless (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55694,9 +55887,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2107652567}
   - component: {fileID: 2107652566}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground Horizontal 2048
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55761,13 +55954,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107652565}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.5187, y: -9.644346, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0011451485, w: 0.9999994}
+  m_LocalPosition: {x: -18.518698, y: -9.644346, z: 0}
   m_LocalScale: {x: 2.1443138, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 212010405}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.131}
 --- !u!1 &2108104155
 GameObject:
   m_ObjectHideFlags: 0
@@ -56372,3 +56565,5 @@ SceneRoots:
   - {fileID: 1473208270}
   - {fileID: 376955001}
   - {fileID: 1643065292}
+  - {fileID: 706858457}
+  - {fileID: 899226818}

@@ -10,6 +10,8 @@ TagManager:
   - NPC
   - NPC2
   - NPC3
+  - Ground
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -17,12 +19,12 @@ TagManager:
   - 
   - Water
   - UI
+  - 
+  - 
+  - Ground
+  - Player
   - Enemy
   - Boss
-  - Player
-  - 
-  - 
-  - 
   - 
   - 
   - 
@@ -46,4 +48,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 3357472653
+    locked: 0
+  - name: Background
+    uniqueID: 1916083587
+    locked: 0
+  - name: Foreground
+    uniqueID: 2801756187
+    locked: 0
+  - name: Player
+    uniqueID: 2042676745
+    locked: 0
+  - name: Enemy
+    uniqueID: 3061990779
+    locked: 0
+  - name: Boss
+    uniqueID: 2349929835
     locked: 0
