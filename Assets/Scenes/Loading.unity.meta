@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Loading.unity.meta
 guid: e592348fb7f1d0946a328921fae25348
 DefaultImporter:
+========
+guid: 053f54095a1a6af438f47243620ab3ef
+PrefabImporter:
+>>>>>>>> greenhouse:Assets/Prefab/bunga/Bunga Sheet 4.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
