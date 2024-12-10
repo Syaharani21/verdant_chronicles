@@ -943,7 +943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
+  m_Color: {r: 0.24528301, g: 0.19127639, b: 0.1469384, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10159,7 +10159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.91764706, b: 0.827451, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -17371,7 +17371,7 @@ Transform:
   m_GameObject: {fileID: 633981368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.99, y: -1.71, z: -0.01}
+  m_LocalPosition: {x: -45.14, y: -2.46, z: -0.01}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21037,7 +21037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.91660076, b: 0.8254717, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -21474,7 +21474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8962264, g: 0.8723545, b: 0.7905393, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -24998,7 +24998,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: be94974c42912234cb52321fb313c106, type: 3}
   - speaker: Elara
     line: "Pak Septo, huh? Alright, I\u2019ll go talk to him. Thanks, Senadin."
-    sprite: {fileID: 21300000, guid: 69e27b88d77ca4344856f07551588e12, type: 3}
+    sprite: {fileID: 21300000, guid: ede20c475fbdef24ca6adfb27e259db1, type: 3}
   speakerText: {fileID: 1418753400}
   dialogText: {fileID: 1705260683}
   speakerImage: {fileID: 604812479}
@@ -29011,7 +29011,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -487, y: 451}
+  m_AnchoredPosition: {x: -585, y: 359}
   m_SizeDelta: {x: 180, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1059849181
@@ -36427,7 +36427,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1324938023
 Transform:
   m_ObjectHideFlags: 0
@@ -40465,8 +40465,8 @@ Transform:
   m_GameObject: {fileID: 1473208264}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 663.2, y: -29.5, z: -0.061811525}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: 665.12, y: -27.88, z: -0.0618}
+  m_LocalScale: {x: 2.3676, y: 2.3676, z: 2.3676}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 528088672}
@@ -40797,7 +40797,7 @@ Transform:
   m_GameObject: {fileID: 1479710800}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.1, y: 3.89, z: 0}
+  m_LocalPosition: {x: -25.1, y: 3.89, z: 0.18}
   m_LocalScale: {x: 3.0839217, y: 1.3116, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47358,7 +47358,7 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: dc573d3e46d858345a093e418696d501, type: 3}
   - speaker: Elara
     line: "I understand. I\u2019ll go to Tirtayana and put an end to this."
-    sprite: {fileID: 21300000, guid: 69e27b88d77ca4344856f07551588e12, type: 3}
+    sprite: {fileID: 21300000, guid: ede20c475fbdef24ca6adfb27e259db1, type: 3}
   - speaker: Pak Septo
     line: "You\u2019ve always been brave, Elara. Take this\u2014some healing potions.
       Stay safe."
@@ -49312,7 +49312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7830189, g: 0.6935786, b: 0.4321378, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
