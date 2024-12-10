@@ -9964,7 +9964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11518d95bb00cbf49a9b0855abe593d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 10
 --- !u!212 &372232558
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12641,7 +12641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11518d95bb00cbf49a9b0855abe593d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 10
 --- !u!212 &442500269
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17371,7 +17371,7 @@ Transform:
   m_GameObject: {fileID: 633981368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -45.3, y: -2.33, z: -0.01}
+  m_LocalPosition: {x: -37.99, y: -1.71, z: -0.01}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17411,7 +17411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742bdc1959a59ab40b878c72e172ff27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 1
+  attackCooldown: 0.75
   firePoint: {fileID: 1324938023}
   fireballs:
   - {fileID: 1366287320}
@@ -17484,7 +17484,9 @@ MonoBehaviour:
   startingHealth: 100
   iFramesDuration: 0
   numberOfFlashes: 0
-  components: []
+  components:
+  - {fileID: 633981375}
+  - {fileID: 633981376}
   deathSound1: {fileID: 8300000, guid: 7d4c481cbe4bd054aadaa6a0e6d8de07, type: 3}
   deathSound2: {fileID: 8300000, guid: 4bc666b88daca4046bb9f2fb6190da9c, type: 3}
   hurtSound: {fileID: 8300000, guid: 097d6537bf25a50479e0b485f32ebcdc, type: 3}
@@ -21369,7 +21371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11518d95bb00cbf49a9b0855abe593d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 10
 --- !u!212 &767575451
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22058,7 +22060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11518d95bb00cbf49a9b0855abe593d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 10
 --- !u!212 &786884466
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24828,7 +24830,7 @@ Transform:
   m_GameObject: {fileID: 882521905}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.44, y: -2.18, z: 0}
+  m_LocalPosition: {x: 1.99, y: -2.18, z: 0}
   m_LocalScale: {x: 0.72245795, y: 0.6527635, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29009,7 +29011,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -570.6, y: 363.99}
+  m_AnchoredPosition: {x: -487, y: 451}
   m_SizeDelta: {x: 180, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1059849181
@@ -31736,7 +31738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11518d95bb00cbf49a9b0855abe593d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 10
 --- !u!212 &1166829795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32350,7 +32352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11518d95bb00cbf49a9b0855abe593d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 10
 --- !u!212 &1175935115
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37784,7 +37786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11518d95bb00cbf49a9b0855abe593d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 10
 --- !u!212 &1366287326
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40285,7 +40287,7 @@ GameObject:
   - component: {fileID: 1473208265}
   m_Layer: 10
   m_Name: Boss
-  m_TagString: Boss
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40313,7 +40315,7 @@ MonoBehaviour:
   attackCooldown: 2
   attackLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 512
   attackSound1: {fileID: 8300000, guid: ed722ffd021ee1f43bd365f8c1a7b29e, type: 3}
   attackSound2: {fileID: 8300000, guid: 99c4ab038872f404189a39530935908c, type: 3}
   speed: 4
@@ -40440,8 +40442,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1945037461
-  m_SortingLayer: 6
+  m_SortingLayerID: -1232976517
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -1772472468, guid: 56217c392ebc07b4d86e0d55b4ae9e98, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -44029,7 +44031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11518d95bb00cbf49a9b0855abe593d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 10
 --- !u!212 &1599281842
 SpriteRenderer:
   m_ObjectHideFlags: 0
