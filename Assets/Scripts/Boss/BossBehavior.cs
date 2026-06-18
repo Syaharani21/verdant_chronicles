@@ -59,6 +59,7 @@ public class BossBehavior : MonoBehaviour
                 }
                 else
                 {
+                    anim.SetBool("isRunning", false);
                     StartCoroutine(PerformAttackSequence());
                 }
             }
@@ -106,7 +107,7 @@ public class BossBehavior : MonoBehaviour
             player.GetComponent<Health>()?.TakeDamage(attackDamage);
         }
 
-        yield return new WaitForSeconds(attackCooldown - 1.5f);
+        yield return new WaitForSeconds(Mathf.Max(0f, attackCooldown - 1.5f));
         isAttacking = false;
     }
 

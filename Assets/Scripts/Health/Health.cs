@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class Health : MonoBehaviour
     [SerializeField] private AudioClip deathSound2;
     [SerializeField] private AudioClip hurtSound;
 
+    [Header("FSM Event (untuk Enemy/Boss)")]
+    [Tooltip("Akan dipanggil saat objek ini menerima damage. Hubungkan ke EnemyFSM.OnHitByPlayer atau BossFSM.OnHitByPlayer")]
+    public UnityEvent<float> onHit; // Kirim nilai damage ke FSM
+
     private void Awake()
     {
         currentHealth = startingHealth;
@@ -42,6 +47,9 @@ public class Health : MonoBehaviour
         if (invulnerable || dead) return;
 
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
+
+        // Beritahu FSM bahwa objek ini kena hit
+        onHit?.Invoke(_damage);
 
         if (currentHealth > 0)
         {

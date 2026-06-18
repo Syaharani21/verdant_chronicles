@@ -14,6 +14,15 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private AudioClip weaponSwitchSound;
     [SerializeField] private int fireballDamage;
 
+    // ─── Buff system accessors ───────────────────
+    public int BaseMeleeDamage    => 10; // Samakan dengan nilai default di Inspector
+    public int BaseFireballDamage => 15;
+    public int CurrentMeleeDamage    { get { return meleeDamage; } }
+    public int CurrentFireballDamage { get { return fireballDamage; } }
+    public void SetMeleeDamage(int v)    { meleeDamage = v; }
+    public void SetFireballDamage(int v) { fireballDamage = v; }
+    // ─────────────────────────────────────────────
+
     // Menambahkan referensi ke DialogManager
     [SerializeField] private DialogManager[] dialogManagers;
 
@@ -86,10 +95,14 @@ public class PlayerAttack : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        var fireball = fireballs[FindFireball()];
-        fireball.transform.position = firePoint.position;
-        fireball.GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
-        fireball.GetComponent<Projectile>().SetDamage(fireballDamage); // Set damage dari PlayerAttack
+        int fireballIndex = FindFireball();
+        if (fireballIndex >= 0)
+        {
+            var fireball = fireballs[fireballIndex];
+            fireball.transform.position = firePoint.position;
+            fireball.GetComponent<Projectile>().SetDirection(Mathf.Sign(transform.localScale.x));
+            fireball.GetComponent<Projectile>().SetDamage(fireballDamage);
+        }
 
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
@@ -121,7 +134,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (!fireballs[i].activeInHierarchy) return i;
         }
-        return 0;
+        return -1; // Tidak ada fireball yang tersedia
     }
 
     private void PlayWeaponSwitchSound()

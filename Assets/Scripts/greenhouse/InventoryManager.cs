@@ -1,26 +1,59 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
+/// <summary>
+/// Mengelola panel inventory greenhouse.
+/// Setiap bunga di inventory diwakili oleh FlowerData (ScriptableObject).
+/// 
+/// Setup di Inspector:
+/// - inventoryPanel : Panel UI yang menampilkan pilihan bunga
+/// - flowerEntries  : Array pasangan (FlowerData, prefab GameObject)
+/// </summary>
 public class PlantManager : MonoBehaviour
 {
-    public GameObject inventoryPanel; // Panel inventory
-    public GameObject[] flowerPrefabs; // Prefab bunga
-    private Pot selectedPot; // Pot yang dipilih untuk ditanam bunga
+    [System.Serializable]
+    public struct FlowerEntry
+    {
+        public FlowerData data;         // ScriptableObject data bunga
+        public GameObject prefab;       // Prefab visual bunga untuk di-spawn di pot
+    }
+
+    [Header("UI")]
+    public GameObject inventoryPanel;   // Panel pilihan bunga
+
+    [Header("Bunga yang Tersedia")]
+    public FlowerEntry[] flowerEntries; // Daftar bunga yang bisa ditanam
+
+    [Header("Tombol Bunga (Opsional Auto-Generate)")]
+    [SerializeField] private Transform buttonContainer;  // Parent untuk tombol bunga
+    [SerializeField] private GameObject flowerButtonPrefab; // Prefab tombol (Button + Image + TMP)
+
+    private Pot selectedPot;
 
     private void Start()
     {
-        // Pastikan inventory tidak aktif saat awal
         inventoryPanel.SetActive(false);
+        GenerateFlowerButtons();
     }
 
-    // Method untuk membuka inventory saat pot diklik
+    // ─────────────────────────────────────────────
+    // PUBLIC API
+    // ─────────────────────────────────────────────
+
+    /// <summary>
+    /// Buka inventory untuk pot yang diklik.
+    /// </summary>
     public void OpenInventory(Pot pot)
     {
-        selectedPot = pot; // Simpan pot yang diklik
-        inventoryPanel.SetActive(true); // Tampilkan inventory
+        selectedPot = pot;
+        inventoryPanel.SetActive(true);
         Debug.Log("Inventory opened for pot: " + pot.name);
     }
 
-    // Method untuk menanam bunga di pot dari inventory
+    /// <summary>
+    /// Tanam bunga berdasarkan nama FlowerData. Dipanggil oleh tombol UI.
+    /// </summary>
     public void PlantFlower(string flowerName)
     {
         if (selectedPot == null)
@@ -29,29 +62,72 @@ public class PlantManager : MonoBehaviour
             return;
         }
 
-        // Cari prefab bunga berdasarkan nama
-        GameObject flowerPrefab = System.Array.Find(flowerPrefabs, f => f.name == flowerName);
-        if (flowerPrefab != null)
+        // Cari entry berdasarkan nama
+        FlowerEntry entry = System.Array.Find(flowerEntries, f => f.data != null && f.data.flowerName == flowerName);
+        if (entry.data != null && entry.prefab != null)
         {
-            if (selectedPot.PlantFlower(flowerPrefab))
-            {
-                Debug.Log("Flower planted: " + flowerName + " in pot: " + selectedPot.name);
-            }
+            selectedPot.PlantFlower(entry.prefab, entry.data);
+            Debug.Log($"Planted {flowerName} in {selectedPot.name}");
         }
         else
         {
-            Debug.LogWarning("Flower prefab not found: " + flowerName);
+            Debug.LogWarning($"Flower not found or missing prefab: {flowerName}");
         }
 
-        // Tutup inventory setelah menanam bunga
         CloseInventory();
     }
 
-    // Method untuk menutup inventory
+    /// <summary>
+    /// Tutup panel inventory.
+    /// </summary>
     public void CloseInventory()
     {
         inventoryPanel.SetActive(false);
         selectedPot = null;
         Debug.Log("Inventory closed");
+    }
+
+    // ─────────────────────────────────────────────
+    // TOMBOL OTOMATIS
+    // ─────────────────────────────────────────────
+
+    /// <summary>
+    /// Membuat tombol otomatis untuk setiap bunga (opsional, perlu prefab tombol).
+    /// </summary>
+    private void GenerateFlowerButtons()
+    {
+        if (buttonContainer == null || flowerButtonPrefab == null) return;
+
+        // Hapus tombol lama
+        foreach (Transform child in buttonContainer)
+            Destroy(child.gameObject);
+
+        foreach (var entry in flowerEntries)
+        {
+            if (entry.data == null) continue;
+
+            var btnObj = Instantiate(flowerButtonPrefab, buttonContainer);
+
+            // Set ikon
+            var img = btnObj.GetComponentInChildren<Image>();
+            if (img != null && entry.data.icon != null)
+            {
+                img.sprite = entry.data.icon;
+                img.color = entry.data.buffColor;
+            }
+
+            // Set label
+            var label = btnObj.GetComponentInChildren<TextMeshProUGUI>();
+            if (label != null)
+                label.text = $"{entry.data.flowerName}\n<size=10>{entry.data.description}</size>";
+
+            // Sambungkan ke PlantFlower
+            var btn = btnObj.GetComponent<Button>();
+            if (btn != null)
+            {
+                string capturedName = entry.data.flowerName; // Capture untuk lambda
+                btn.onClick.AddListener(() => PlantFlower(capturedName));
+            }
+        }
     }
 }

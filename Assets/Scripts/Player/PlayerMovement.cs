@@ -10,6 +10,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
+    // ─── Buff system accessors ───────────────────
+    public float BaseSpeed      => 7f;
+    public float BaseJumpPower  => 15f;
+    public float BaseDashCooldown => 0.5f;
+    public float CurrentSpeed       { get { return speed; } }
+    public float CurrentJumpPower   { get { return jumpPower; } }
+    public float CurrentDashCooldown { get { return dashCooldown; } }
+    public void SetSpeed(float v)        { speed = v; }
+    public void SetJumpPower(float v)    { jumpPower = v; }
+    public void SetDashCooldown(float v) { dashCooldown = v; }
+    // ─────────────────────────────────────────────
+
     // Menambahkan tiga referensi ke DialogManager
     public DialogManager dialogManager1; // Referensi DialogManager pertama
     public DialogManager dialogManager2; // Referensi DialogManager kedua
@@ -89,15 +101,12 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
-                if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
-                    SoundManager.instance.PlaySound(jumpSound);
             }
 
             if ((horizontalInput != 0) && Input.GetKeyDown(KeyCode.LeftShift) && dashCooldownTime <= 0)
             {
                 StartDash();
-                if (Input.GetKeyDown(KeyCode.LeftShift))
-                    SoundManager.instance.PlaySound(dashSound);
+                SoundManager.instance.PlaySound(dashSound);
             }
         }
     }
@@ -233,6 +242,7 @@ public class PlayerMovement : MonoBehaviour
         // Cek jika collider adalah NPC
         if (other.CompareTag("NPC"))
         {
+            hasTalked = false; // Reset agar bisa bicara lagi saat masuk kembali
             // Pastikan dialogIcon tetap tidak muncul setelah berbicara
             if (dialogIcon != null && hasTalked)
             {
